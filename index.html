@@ -324,7 +324,7 @@
         const total = data.length;
         const mastered = data.filter(item => item.probability === 1).length;
         const percent = Math.floor((mastered / total) * 100);
-        document.getElementById("progressText").textContent = `📊 Прогресс: ${percent}%`;
+        document.getElementById("progressText").textContent = `📊 Progress: ${percent}%`;
         document.getElementById("progressFill").style.width = `${percent}%`;
 
         const totalPenalty = data.reduce((sum, item) => sum + (item.probability - 1), 0);
