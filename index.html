@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deutsch Verben mit Präpositionen</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .lang-switcher {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+    }
+
+    .lang-switcher button {
+      padding: 6px 10px;
+      margin-left: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .translation {
+      color: #555;
+      font-style: italic;
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .verb-display {
+      font-size: 24px;
+      margin: 10px 0 15px;
+      font-weight: bold;
+    }
+
+    .verb-display .sich {
+      color: #777;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 16px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    #options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .correct-answer {
+      font-size: 24px;
+    }
+
+    #nextButton {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .progress-container {
+      margin-top: 30px;
+    }
+
+    .progress-text {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background-color: #b22222;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: green;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      .translation {
+        font-size: 28px;
+      }
+      .verb-display {
+        font-size: 32px;
+      }
+      button, .lang-switcher button {
+        font-size: 32px;
+        padding: 14px 20px;
+      }
+      #result {
+        font-size: 26px;
+      }
+      .correct-answer {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+    <div id="congratsModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.6); z-index:1000; justify-content:center; align-items:center;">
+    <div style="background:#fff; padding:30px; border-radius:12px; text-align:center; max-width:90%;">
+        <h2>🎉 Glückwunsch! Du hast den Test abgeschlossen!</h2>
+        <button onclick="restartTest()" style="margin-top:20px; font-size:20px; padding:10px 20px; border-radius:8px;">🔁 Test erneut starten</button>
+    </div>
+    </div>
+
+  <div class="lang-switcher">
+    <button onclick="setLanguage('en')">EN</button>
+    <button onclick="setLanguage('ua')">UA</button>
+    <button onclick="setLanguage('ru')">RU</button>
+  </div>
+
+  <div class="translation" id="translation"></div>
+  <div class="verb-display" id="verb"></div>
+  <div id="options"></div>
+  <p id="result"></p>
+  <button id="nextButton" onclick="newQuestion()">➡️</button>
+
+  <div class="progress-container">
+    <div class="progress-text" id="progressText"></div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div id="penaltyPoints" style="margin-top:5px; font-size:14px; color:#666;">Strafpunkte: 0</div>
+
+  <script>
+    // const data = [
+    //   { verb: "achten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "обращать внимание", en: "to pay attention", ua: "звертати увагу" } },
+    //   { verb: "antworten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "отвечать на", en: "to answer to", ua: "відповідати на" } },
+    //   { verb: "sich freuen", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "радоваться (предстоящему)", en: "to look forward to", ua: "радіти (майбутньому)" } },
+    //   { verb: "sich interessieren", correct: "für", case: "Akkusativ", probability: 4, translations: { ru: "интересоваться", en: "to be interested in", ua: "цікавитися" } },
+    //   { verb: "sich treffen", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "встречаться с", en: "to meet with", ua: "зустрічатися з" } }
+    //   // Добавь все остальные глаголы аналогично
+    // ];
+
+        const data = [
+      // Akkusativ
+      { verb: "achten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "обращать внимание", en: "to pay attention", ua: "звертати увагу" } },
+      { verb: "antworten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "отвечать на", en: "to answer to", ua: "відповідати на" } },
+      { verb: "sich ärgern", correct: "über", case: "Akkusativ", probability: 4, translations: { ru: "злиться на", en: "to be annoyed about", ua: "злитися на" } },
+      { verb: "sich aufregen", correct: "über", case: "Akkusativ", probability: 4, translations: { ru: "волноваться из-за", en: "to get upset about", ua: "хвилюватися через" } },
+      { verb: "sich beschweren", correct: "über", case: "Akkusativ", probability: 4, translations: { ru: "жаловаться на", en: "to complain about", ua: "скаржитися на" } },
+      { verb: "bitten", correct: "um", case: "Akkusativ", probability: 4, translations: { ru: "просить о", en: "to ask for", ua: "просити про" } },
+      { verb: "denken", correct: "an", case: "Akkusativ", probability: 4, translations: { ru: "думать о", en: "to think about", ua: "думати про" } },
+      { verb: "sich eignen", correct: "für", case: "Akkusativ", probability: 4, translations: { ru: "подходить для", en: "to be suitable for", ua: "підходити для" } },
+      { verb: "sich entschuldigen", correct: "für", case: "Akkusativ", probability: 4, translations: { ru: "извиняться за", en: "to apologize for", ua: "вибачатися за" } },
+      { verb: "sich erinnern", correct: "an", case: "Akkusativ", probability: 4, translations: { ru: "вспоминать о", en: "to remember", ua: "пам’ятати про" } },
+      { verb: "sich freuen", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "радоваться (предстоящему)", en: "to look forward to", ua: "радіти (майбутньому)" } },
+      { verb: "sich gewöhnen", correct: "an", case: "Akkusativ", probability: 4, translations: { ru: "привыкать к", en: "to get used to", ua: "звикати до" } },
+      { verb: "sich interessieren", correct: "für", case: "Akkusativ", probability: 4, translations: { ru: "интересоваться", en: "to be interested in", ua: "цікавитися" } },
+      { verb: "sich konzentrieren", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "концентрироваться на", en: "to concentrate on", ua: "зосереджуватися на" } },
+      { verb: "sich kümmern", correct: "um", case: "Akkusativ", probability: 4, translations: { ru: "заботиться о", en: "to take care of", ua: "дбати про" } },
+      { verb: "reden", correct: "über", case: "Akkusativ", probability: 4, translations: { ru: "говорить о", en: "to talk about", ua: "говорити про" } },
+      { verb: "sorgen", correct: "für", case: "Akkusativ", probability: 4, translations: { ru: "заботиться о", en: "to care for", ua: "піклуватися про" } },
+      { verb: "sprechen", correct: "über", case: "Akkusativ", probability: 4, translations: { ru: "говорить о", en: "to speak about", ua: "говорити про" } },
+      { verb: "sich vorbereiten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "готовиться к", en: "to prepare for", ua: "готуватися до" } },
+      { verb: "warten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "ждать", en: "to wait for", ua: "чекати" } },
+      { verb: "sich wenden", correct: "an", case: "Akkusativ", probability: 4, translations: { ru: "обращаться к", en: "to turn to", ua: "звертатися до" } },
+      { verb: "sich wundern", correct: "über", case: "Akkusativ", probability: 4, translations: { ru: "удивляться", en: "to be surprised about", ua: "дивуватися" } },
+
+      // Dativ
+      { verb: "abhängen", correct: "von", case: "Dativ", probability: 4, translations: { ru: "зависеть от", en: "to depend on", ua: "залежати від" } },
+      { verb: "sich bedanken", correct: "bei", case: "Dativ", probability: 4, translations: { ru: "благодарить кого-то", en: "to thank someone", ua: "дякувати комусь" } },
+      { verb: "berichten", correct: "von", case: "Dativ", probability: 4, translations: { ru: "докладывать о", en: "to report on", ua: "доповідати про" } },
+      { verb: "sich beschäftigen", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "заниматься чем-то", en: "to be busy with", ua: "займатися чимось" } },
+      { verb: "chatten", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "переписываться с", en: "to chat with", ua: "спілкуватися з" } },
+      { verb: "diskutieren", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "дискутировать с", en: "to discuss with", ua: "дискутувати з" } },
+      { verb: "einladen", correct: "zu", case: "Dativ", probability: 4, translations: { ru: "приглашать на", en: "to invite to", ua: "запрошувати на" } },
+      { verb: "sich entschuldigen", correct: "bei", case: "Dativ", probability: 4, translations: { ru: "извиняться перед", en: "to apologize to", ua: "вибачатися перед" } },
+      { verb: "erzählen", correct: "von", case: "Dativ", probability: 4, translations: { ru: "рассказывать о", en: "to tell about", ua: "розповідати про" } },
+      { verb: "gehören", correct: "zu", case: "Dativ", probability: 4, translations: { ru: "принадлежать к", en: "to belong to", ua: "належати до" } },
+      { verb: "leiden", correct: "unter", case: "Dativ", probability: 4, translations: { ru: "страдать от", en: "to suffer from", ua: "страждати від" } },
+      { verb: "reden", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "разговаривать с", en: "to talk with", ua: "говорити з" } },
+      { verb: "sprechen", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "говорить с", en: "to speak with", ua: "говорити з" } },
+      { verb: "streiten", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "спорить с", en: "to argue with", ua: "сваритися з" } },
+      { verb: "teilnehmen", correct: "an", case: "Dativ", probability: 4, translations: { ru: "участвовать в", en: "to participate in", ua: "брати участь у" } },
+      { verb: "telefonieren", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "разговаривать по телефону с", en: "to call", ua: "телефонувати з" } },
+      { verb: "träumen", correct: "von", case: "Dativ", probability: 4, translations: { ru: "мечтать о", en: "to dream of", ua: "мріяти про" } },
+      { verb: "sich treffen", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "встречаться с", en: "to meet with", ua: "зустрічатися з" } },
+      { verb: "sich unterhalten", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "беседовать с", en: "to have a conversation with", ua: "спілкуватися з" } }
+    ];
+
+    const prepositions = ["an", "auf", "bei", "für", "in", "mit", "über", "unter", "um", "von", "zu"];
+
+    let currentLang = "en";
+    let currentCorrect = "";
+    let currentIndex = null;
+
+    const nextButtonText = {
+      ru: "➡️ Следующий",
+      en: "➡️ Next",
+      ua: "➡️ Наступний"
+    };
+
+    const resultText = {
+      ru: { correct: "✅ Правильно!", wrong: "❌ Неправильно! Правильный ответ:" },
+      en: { correct: "✅ Correct!", wrong: "❌ Wrong! Correct answer:" },
+      ua: { correct: "✅ Правильно!", wrong: "❌ Неправильно! Правильна відповідь:" }
+    };
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      newQuestion();
+    }
+
+    function formatVerb(verb) {
+      if (verb.startsWith("sich ")) {
+        const parts = verb.split(" ");
+        return `<span class="sich">${parts[0]}</span> ${parts[1]}`;
+      }
+      return verb;
+    }
+
+    function getWeightedRandomIndex() {
+      const pool = [];
+      data.forEach((item, index) => {
+        for (let i = 0; i < item.probability; i++) {
+          pool.push(index);
+        }
+      });
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+
+    function newQuestion() {
+      currentIndex = getWeightedRandomIndex();
+      const item = data[currentIndex];
+      const { verb, correct, translations, case: grammarCase } = item;
+
+      currentCorrect = correct;
+      document.getElementById("translation").innerHTML = `${translations[currentLang]} <span style="color:#999; font-size:16px;">(${grammarCase})</span>`;
+      document.getElementById("verb").innerHTML = formatVerb(verb);
+      document.getElementById("result").textContent = "";
+      document.getElementById("nextButton").style.display = "none";
+      document.getElementById("nextButton").textContent = nextButtonText[currentLang];
+
+      const container = document.getElementById("options");
+      container.innerHTML = "";
+
+      prepositions.forEach((prep) => {
+        const btn = document.createElement("button");
+        btn.textContent = prep;
+        btn.onclick = () => handleAnswer(prep);
+        container.appendChild(btn);
+      });
+    }
+
+    function handleAnswer(selected) {
+      const container = document.getElementById("options");
+      container.innerHTML = "";
+      const result = document.getElementById("result");
+      const correct = currentCorrect;
+      const item = data[currentIndex];
+
+      if (selected === correct) {
+        result.textContent = resultText[currentLang].correct;
+        if (item.probability > 1) item.probability -= 1;
+      } else {
+        result.innerHTML = `${resultText[currentLang].wrong} <span class="correct-answer">${correct}</span>`;
+        if (item.probability < 18) item.probability += 3;
+      }
+
+      document.getElementById("verb").innerHTML = formatVerb(item.verb) + ` ${item.correct}`;
+      document.getElementById("nextButton").style.display = "inline-block";
+      updateProgress();
+    }
+
+
+
+    // function updateProgress() {
+    //     const total = data.length;
+    //     const mastered = data.filter(item => item.probability === 1).length;
+    //     const percent = Math.floor((mastered / total) * 100);
+    //     document.getElementById("progressText").textContent = `📊 Прогресс: ${percent}%`;
+    //     document.getElementById("progressFill").style.width = `${percent}%`;
+
+    //     if (percent === 100) {
+    //         document.getElementById("congratsModal").style.display = "flex";
+    //     }
+    // }
+
+    // function updateProgress() {
+    //     const total = data.length;
+    //     const mastered = data.filter(item => item.probability === 1).length;
+    //     const percent = Math.floor((mastered / total) * 100);
+    //     document.getElementById("progressText").textContent = `📊 Прогресс: ${percent}%`;
+    //     document.getElementById("progressFill").style.width = `${percent}%`;
+
+    //     // Страфпункты = сумма (probability - 1)
+    //     const penalty = data.reduce((sum, item) => sum + (item.probability - 1), 0);
+    //     document.getElementById("penaltyPoints").textContent = `Strafpunkte: ${penalty}`;
+
+    //     if (percent === 100) {
+    //         document.getElementById("congratsModal").style.display = "flex";
+    //     }
+    // }
+
+    function updateProgress() {
+        const total = data.length;
+        const mastered = data.filter(item => item.probability === 1).length;
+        const percent = Math.floor((mastered / total) * 100);
+        document.getElementById("progressText").textContent = `📊 Прогресс: ${percent}%`;
+        document.getElementById("progressFill").style.width = `${percent}%`;
+
+        const totalPenalty = data.reduce((sum, item) => sum + (item.probability - 1), 0);
+        const currentItem = data[currentIndex];
+        const currentPenalty = currentItem ? currentItem.probability - 1 : 0;
+        const currentVerb = currentItem ? currentItem.verb : "";
+
+        document.getElementById("penaltyPoints").textContent =
+            `${currentVerb} >>> Strafpunkte: ${currentPenalty} / Total Strafpunkte: ${totalPenalty}`;
+
+        if (percent === 100) {
+            document.getElementById("congratsModal").style.display = "flex";
+        }
+    }
+
+
+    function restartTest() {
+        data.forEach(item => item.probability = 4);
+        document.getElementById("congratsModal").style.display = "none";
+        updateProgress();
+        newQuestion();
+    }
+
+    newQuestion();
+    updateProgress();
+  </script>
+
+</body>
+</html>
