@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="/DEVerbsPreps/manifest.json">
   <title>Deutsch Verben mit Präpositionen</title>
   <style>
     body {
@@ -367,9 +368,24 @@
         newQuestion();
     }
 
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/DEVerbsPreps/service-worker.js', { scope: '/DEVerbsPreps/' })
+          .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch(error => {
+            console.error('Service Worker registration failed:', error);
+          });
+      });
+    }
+
     newQuestion();
     updateProgress();
-  </script>
 
+  </script>
+  <script>
+
+  </script>
 </body>
 </html>
