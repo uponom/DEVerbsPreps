@@ -21,17 +21,17 @@
   "screenshots": [
     {
       "src": "/DEVerbsPreps/screenshot-wide.png",
-      "sizes": "1280x720",
+      "sizes": "1435x744",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Вид страницы на десктопе"
+      "label": "Desktop view"
     },
     {
-      "src": "/DEVerbsPreps/screenshot-narrow.png",
-      "sizes": "720x1280",
+      "src": "/DEVerbsPreps/screenshot-port.png",
+      "sizes": "1008x2120",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Вид страницы на мобильном"
+      "label": "Mobile view"
     }
   ]
 }
