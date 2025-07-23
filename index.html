@@ -238,7 +238,7 @@
       { verb: "sich unterhalten", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "беседовать с", en: "to have a conversation with", ua: "спілкуватися з" } }
     ];
 
-    const prepositions = [...new Set(data.map(item => item.correct))];
+    const prepositions = [...new Set(data.map(item => item.correct))].sort();
 
     let currentLang = "en";
     let currentCorrect = "";
