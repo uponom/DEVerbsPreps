@@ -234,12 +234,12 @@
       { verb: "reden", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "разговаривать с", en: "to talk with", ua: "говорити з" }, example: "Ich rede mit meinem Freund." },
       { verb: "sprechen", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "говорить с", en: "to speak with", ua: "говорити з" }, example: "Ich spreche mit meiner Mutter." },
       { verb: "schuld sein", correct: "an", case: "Dativ", probability: 7, translations: { ru: "быть виноватым в", en: "to be guilty of", ua: "бути винним у" }, example: "Er ist schuld an dem Unfall." },
-      { verb: "schützen", correct: "vor", case: "Dativ", probability: 7, translations: { ru: "защищать от", en: "to protect from", ua: "захищати від" }, example: "Die Jacke schützt vor Kälte." },
+      { verb: "schützen", correct: "vor", case: "Dativ", probability: 7, translations: { ru: "защищать от", en: "to protect from", ua: "захищати від" }, example: "Die Sonnencreme schützt vor Sonnenbrand." },
       { verb: "streiten", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "спорить с", en: "to argue with", ua: "сваритися з" }, example: "Ich streite oft mit meinem Bruder." },
       { verb: "teilnehmen", correct: "an", case: "Dativ", probability: 7, translations: { ru: "участвовать в", en: "to participate in", ua: "брати участь у" }, example: "Ich nehme an dem Kurs teil." },
       { verb: "telefonieren", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "разговаривать по телефону с", en: "to call", ua: "телефонувати з" }, example: "Ich telefoniere mit meiner Schwester." },
       { verb: "träumen", correct: "von", case: "Dativ", probability: 7, translations: { ru: "мечтать о", en: "to dream of", ua: "мріяти про" }, example: "Ich träume von einem Haus am Meer." },
-      { verb: "trennen", correct: "von", case: "Dativ", probability: 7, translations: { ru: "отделять от", en: "to separate from", ua: "відокремлювати від" }, example: "Sie trennt das Salz vom Wasser." },
+      { verb: "trennen", correct: "von", case: "Dativ", probability: 7, translations: { ru: "отделять от", en: "to separate from", ua: "відокремлювати від" }, example: "Sie trennt den Müll von dem Rest." },
       { verb: "sich treffen", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "встречаться с", en: "to meet with", ua: "зустрічатися з" }, example: "Ich treffe mich mit meinen Freunden." },
       { verb: "sich verabschieden", correct: "von", case: "Dativ", probability: 7, translations: { ru: "прощаться с", en: "to say goodbye to", ua: "прощатися з" }, example: "Ich verabschiede mich von meinen Eltern." },
       { verb: "sich überzeugen", correct: "von", case: "Dativ", probability: 7, translations: { ru: "убедиться в", en: "to be convinced of", ua: "переконатися в" }, example: "Ich habe mich von der Qualität überzeugt." },
@@ -301,9 +301,12 @@
       document.getElementById("nextButton").style.display = "none";
       document.getElementById("nextButton").textContent = nextButtonText[currentLang];
 
-      // Упрощено: заменяем все вхождения текущего предлога на троеточие
+      // Заменяем все вхождения текущего предлога на троеточие, включая спецсимволы (ä, ü, ö, ß)
       if (example && correct) {
-        const replaced = example.replace(new RegExp(`\\b${correct}\\b`, "g"), "...");
+        // Экранируем спецсимволы для регулярного выражения
+        const escaped = correct.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        // Добавляем проверку на пробел перед предлогом
+        const replaced = example.replace(new RegExp(`\\s${escaped}`, "gu"), " ...");
         document.getElementById("example").textContent = replaced;
       } else {
         document.getElementById("example").textContent = "";
