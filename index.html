@@ -154,15 +154,8 @@
   <div id="penaltyPoints" style="margin-top:5px; font-size:14px; color:#666;">Strafpunkte: 0</div>
 
   <script>
-    // const data = [
-    //   { verb: "achten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "обращать внимание", en: "to pay attention", ua: "звертати увагу" } },
-    //   { verb: "antworten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "отвечать на", en: "to answer to", ua: "відповідати на" } },
-    //   { verb: "sich freuen", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "радоваться (предстоящему)", en: "to look forward to", ua: "радіти (майбутньому)" } },
-    //   { verb: "sich interessieren", correct: "für", case: "Akkusativ", probability: 4, translations: { ru: "интересоваться", en: "to be interested in", ua: "цікавитися" } },
-    //   { verb: "sich treffen", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "встречаться с", en: "to meet with", ua: "зустрічатися з" } }
-    //   // Добавь все остальные глаголы аналогично
-    // ];
-
+    // Data for verbs with prepositions
+    // Each verb has a probability weight for random selection
         const data = [
       // Akkusativ
       { verb: "achten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "обращать внимание", en: "to pay attention", ua: "звертати увагу" } },
@@ -294,36 +287,6 @@
       updateProgress();
     }
 
-
-
-    // function updateProgress() {
-    //     const total = data.length;
-    //     const mastered = data.filter(item => item.probability === 1).length;
-    //     const percent = Math.floor((mastered / total) * 100);
-    //     document.getElementById("progressText").textContent = `📊 Fortschritt: ${percent}%`;
-    //     document.getElementById("progressFill").style.width = `${percent}%`;
-
-    //     if (percent === 100) {
-    //         document.getElementById("congratsModal").style.display = "flex";
-    //     }
-    // }
-
-    // function updateProgress() {
-    //     const total = data.length;
-    //     const mastered = data.filter(item => item.probability === 1).length;
-    //     const percent = Math.floor((mastered / total) * 100);
-    //     document.getElementById("progressText").textContent = `📊 Progress: ${percent}%`;
-    //     document.getElementById("progressFill").style.width = `${percent}%`;
-
-    //     // Страфпункты = сумма (probability - 1)
-    //     const penalty = data.reduce((sum, item) => sum + (item.probability - 1), 0);
-    //     document.getElementById("penaltyPoints").textContent = `Strafpunkte: ${penalty}`;
-
-    //     if (percent === 100) {
-    //         document.getElementById("congratsModal").style.display = "flex";
-    //     }
-    // }
-
     function updateProgress() {
         const total = data.length;
         const mastered = data.filter(item => item.probability === 1).length;
@@ -343,7 +306,6 @@
             document.getElementById("congratsModal").style.display = "flex";
         }
     }
-
 
     function restartTest() {
         data.forEach(item => item.probability = 4);
