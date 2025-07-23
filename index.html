@@ -162,7 +162,7 @@
       { verb: "antworten", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "отвечать на", en: "to answer to", ua: "відповідати на" } },
       { verb: "sich ärgern", correct: "über", case: "Akkusativ", probability: 7, translations: { ru: "злиться на", en: "to be annoyed about", ua: "злитися на" } },
       { verb: "sich aufregen", correct: "über", case: "Akkusativ", probability: 7, translations: { ru: "волноваться из-за", en: "to get upset about", ua: "хвилюватися через" } },
-      { verb: "sich bedanken", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "благодарить за", en: "to thank someone", ua: "дякувати за" } },
+      { verb: "sich bedanken", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "благодарить за", en: "to thank for", ua: "дякувати за" } },
       { verb: "beschränken", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "ограничивать чем-то", en: "to limit to", ua: "обмежувати чимось" } },
       { verb: "sich beschweren", correct: "über", case: "Akkusativ", probability: 7, translations: { ru: "жаловаться на", en: "to complain about", ua: "скаржитися на" } },
       { verb: "bitten", correct: "um", case: "Akkusativ", probability: 7, translations: { ru: "просить о", en: "to ask for", ua: "просити про" } },
@@ -264,7 +264,7 @@
     function formatVerb(verb) {
       if (verb.startsWith("sich ")) {
         const parts = verb.split(" ");
-        return `<span class="sich">${parts[0]}</span> ${parts[1]}`;
+        return `<span class="sich">${parts[0]}</span> ${parts.slice(1).join(" ")}`;
       }
       return verb;
     }
