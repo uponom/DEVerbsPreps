@@ -108,11 +108,11 @@
       }
       button {
         font-size: 32px;
-        padding: 14px 20px;
+        padding: 8px 10px;
       }
       .lang-switcher button {
         font-size: 16px;
-        padding: 14px 20px;
+        padding: 8px 10px;
       }
       #result {
         font-size: 26px;
@@ -158,52 +158,87 @@
     // Each verb has a probability weight for random selection
         const data = [
       // Akkusativ
-      { verb: "achten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "обращать внимание", en: "to pay attention", ua: "звертати увагу" } },
-      { verb: "antworten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "отвечать на", en: "to answer to", ua: "відповідати на" } },
-      { verb: "sich ärgern", correct: "über", case: "Akkusativ", probability: 4, translations: { ru: "злиться на", en: "to be annoyed about", ua: "злитися на" } },
-      { verb: "sich aufregen", correct: "über", case: "Akkusativ", probability: 4, translations: { ru: "волноваться из-за", en: "to get upset about", ua: "хвилюватися через" } },
-      { verb: "sich beschweren", correct: "über", case: "Akkusativ", probability: 4, translations: { ru: "жаловаться на", en: "to complain about", ua: "скаржитися на" } },
-      { verb: "bitten", correct: "um", case: "Akkusativ", probability: 4, translations: { ru: "просить о", en: "to ask for", ua: "просити про" } },
-      { verb: "denken", correct: "an", case: "Akkusativ", probability: 4, translations: { ru: "думать о", en: "to think about", ua: "думати про" } },
-      { verb: "sich eignen", correct: "für", case: "Akkusativ", probability: 4, translations: { ru: "подходить для", en: "to be suitable for", ua: "підходити для" } },
-      { verb: "sich entschuldigen", correct: "für", case: "Akkusativ", probability: 4, translations: { ru: "извиняться за", en: "to apologize for", ua: "вибачатися за" } },
-      { verb: "sich erinnern", correct: "an", case: "Akkusativ", probability: 4, translations: { ru: "вспоминать о", en: "to remember", ua: "пам’ятати про" } },
-      { verb: "sich freuen", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "радоваться (предстоящему)", en: "to look forward to", ua: "радіти (майбутньому)" } },
-      { verb: "sich gewöhnen", correct: "an", case: "Akkusativ", probability: 4, translations: { ru: "привыкать к", en: "to get used to", ua: "звикати до" } },
-      { verb: "sich interessieren", correct: "für", case: "Akkusativ", probability: 4, translations: { ru: "интересоваться", en: "to be interested in", ua: "цікавитися" } },
-      { verb: "sich konzentrieren", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "концентрироваться на", en: "to concentrate on", ua: "зосереджуватися на" } },
-      { verb: "sich kümmern", correct: "um", case: "Akkusativ", probability: 4, translations: { ru: "заботиться о", en: "to take care of", ua: "дбати про" } },
-      { verb: "reden", correct: "über", case: "Akkusativ", probability: 4, translations: { ru: "говорить о", en: "to talk about", ua: "говорити про" } },
-      { verb: "sorgen", correct: "für", case: "Akkusativ", probability: 4, translations: { ru: "заботиться о", en: "to care for", ua: "піклуватися про" } },
-      { verb: "sprechen", correct: "über", case: "Akkusativ", probability: 4, translations: { ru: "говорить о", en: "to speak about", ua: "говорити про" } },
-      { verb: "sich vorbereiten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "готовиться к", en: "to prepare for", ua: "готуватися до" } },
-      { verb: "warten", correct: "auf", case: "Akkusativ", probability: 4, translations: { ru: "ждать", en: "to wait for", ua: "чекати" } },
-      { verb: "sich wenden", correct: "an", case: "Akkusativ", probability: 4, translations: { ru: "обращаться к", en: "to turn to", ua: "звертатися до" } },
-      { verb: "sich wundern", correct: "über", case: "Akkusativ", probability: 4, translations: { ru: "удивляться", en: "to be surprised about", ua: "дивуватися" } },
+      { verb: "achten", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "обращать внимание на", en: "to pay attention", ua: "звертати увагу на" } },
+      { verb: "antworten", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "отвечать на", en: "to answer to", ua: "відповідати на" } },
+      { verb: "sich ärgern", correct: "über", case: "Akkusativ", probability: 7, translations: { ru: "злиться на", en: "to be annoyed about", ua: "злитися на" } },
+      { verb: "sich aufregen", correct: "über", case: "Akkusativ", probability: 7, translations: { ru: "волноваться из-за", en: "to get upset about", ua: "хвилюватися через" } },
+      { verb: "sich bedanken", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "благодарить за", en: "to thank someone", ua: "дякувати за" } },
+      { verb: "beschränken", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "ограничивать чем-то", en: "to limit to", ua: "обмежувати чимось" } },
+      { verb: "sich beschweren", correct: "über", case: "Akkusativ", probability: 7, translations: { ru: "жаловаться на", en: "to complain about", ua: "скаржитися на" } },
+      { verb: "bitten", correct: "um", case: "Akkusativ", probability: 7, translations: { ru: "просить о", en: "to ask for", ua: "просити про" } },
+      { verb: "denken", correct: "an", case: "Akkusativ", probability: 7, translations: { ru: "думать о", en: "to think about", ua: "думати про" } },
+      { verb: "durchsetzen", correct: "gegen", case: "Akkusativ", probability: 7, translations: { ru: "пробиваться через", en: "to push through against", ua: "пробиватися через" } },
+      { verb: "sich eignen", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "подходить для", en: "to be suitable for", ua: "підходити для" } },
+      { verb: "einbringen", correct: "in", case: "Akkusativ", probability: 7, translations: { ru: "вносить в", en: "to bring into", ua: "вносити в" } },
+      { verb: "eingehen", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "вникать в", en: "to go into", ua: "заглиблюватися в" } },
+      { verb: "einsetzen", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "использовать для", en: "to use for", ua: "використовувати для" } },
+      { verb: "sich einsetzen", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "заступаться за", en: "to stand up for", ua: "заступатися за" } },
+      { verb: "einziehen", correct: "in", case: "Akkusativ", probability: 7, translations: { ru: "въезжать в", en: "to move into", ua: "в’їжджати в" } },
+      { verb: "sich engagieren", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "активно участвовать в", en: "to get involved in", ua: "активно брати участь у" } },
+      { verb: "sich entscheiden", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "решиться на", en: "to decide on", ua: "вирішити щодо" } },
+      { verb: "sich entschuldigen", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "извиняться за", en: "to apologize for", ua: "вибачатися за" } },
+      { verb: "sich erinnern", correct: "an", case: "Akkusativ", probability: 7, translations: { ru: "вспоминать о", en: "to remember", ua: "пам’ятати про" } },
+      { verb: "sich freuen", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "радоваться (предстоящему)", en: "to look forward to", ua: "радіти (майбутньому)" } },
+      { verb: "halten", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "считать кого-то кем-то", en: "to consider as", ua: "вважати когось кимось" } },
+      { verb: "hinweisen", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "указывать на", en: "to point out", ua: "вказувати на" } },
+      { verb: "sich gewöhnen", correct: "an", case: "Akkusativ", probability: 7, translations: { ru: "привыкать к", en: "to get used to", ua: "звикати до" } },
+      { verb: "informieren", correct: "über", case: "Akkusativ", probability: 7, translations: { ru: "информировать о", en: "to inform about", ua: "інформувати про" } },
+      { verb: "sich interessieren", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "интересоваться", en: "to be interested in", ua: "цікавитися" } },
+      { verb: "sich konzentrieren", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "концентрироваться на", en: "to concentrate on", ua: "зосереджуватися на" } },
+      { verb: "sich kümmern", correct: "um", case: "Akkusativ", probability: 7, translations: { ru: "заботиться о", en: "to take care of", ua: "дбати про" } },
+      { verb: "reden", correct: "über", case: "Akkusativ", probability: 7, translations: { ru: "говорить о", en: "to talk about", ua: "говорити про" } },
+      { verb: "reichen", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "хватать для", en: "to be enough for", ua: "вистачати для" } },
+      { verb: "sorgen", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "заботиться о", en: "to care for", ua: "піклуватися про" } },
+      { verb: "sprechen", correct: "über", case: "Akkusativ", probability: 7, translations: { ru: "говорить о", en: "to speak about", ua: "говорити про" } },
+      { verb: "sich verlassen", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "полагаться на", en: "to rely on", ua: "покладатися на" } },
+      { verb: "sich verpflichten", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "обязываться на", en: "to commit to", ua: "зобов’язуватися на" } },
+      { verb: "verzichten", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "отказываться от", en: "to do without", ua: "відмовлятися від" } },
+      { verb: "sich vorbereiten", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "готовиться к", en: "to prepare for", ua: "готуватися до" } },
+      { verb: "warten", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "ждать", en: "to wait for", ua: "чекати" } },
+      { verb: "sich wenden", correct: "an", case: "Akkusativ", probability: 7, translations: { ru: "обращаться к", en: "to turn to", ua: "звертатися до" } },
+      { verb: "sich wundern", correct: "über", case: "Akkusativ", probability: 7, translations: { ru: "удивляться", en: "to be surprised about", ua: "дивуватися" } },
+      { verb: "sich Zeit nehmen", correct: "für", case: "Akkusativ", probability: 7, translations: { ru: "выделять время для", en: "to take time for", ua: "приділяти час для" } },
+      { verb: "zutreffen", correct: "auf", case: "Akkusativ", probability: 7, translations: { ru: "относиться к", en: "to apply to", ua: "стосуватися до" } },
 
       // Dativ
-      { verb: "abhängen", correct: "von", case: "Dativ", probability: 4, translations: { ru: "зависеть от", en: "to depend on", ua: "залежати від" } },
-      { verb: "sich bedanken", correct: "bei", case: "Dativ", probability: 4, translations: { ru: "благодарить кого-то", en: "to thank someone", ua: "дякувати комусь" } },
-      { verb: "berichten", correct: "von", case: "Dativ", probability: 4, translations: { ru: "докладывать о", en: "to report on", ua: "доповідати про" } },
-      { verb: "sich beschäftigen", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "заниматься чем-то", en: "to be busy with", ua: "займатися чимось" } },
-      { verb: "chatten", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "переписываться с", en: "to chat with", ua: "спілкуватися з" } },
-      { verb: "diskutieren", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "дискутировать с", en: "to discuss with", ua: "дискутувати з" } },
-      { verb: "einladen", correct: "zu", case: "Dativ", probability: 4, translations: { ru: "приглашать на", en: "to invite to", ua: "запрошувати на" } },
-      { verb: "sich entschuldigen", correct: "bei", case: "Dativ", probability: 4, translations: { ru: "извиняться перед", en: "to apologize to", ua: "вибачатися перед" } },
-      { verb: "erzählen", correct: "von", case: "Dativ", probability: 4, translations: { ru: "рассказывать о", en: "to tell about", ua: "розповідати про" } },
-      { verb: "gehören", correct: "zu", case: "Dativ", probability: 4, translations: { ru: "принадлежать к", en: "to belong to", ua: "належати до" } },
-      { verb: "leiden", correct: "unter", case: "Dativ", probability: 4, translations: { ru: "страдать от", en: "to suffer from", ua: "страждати від" } },
-      { verb: "reden", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "разговаривать с", en: "to talk with", ua: "говорити з" } },
-      { verb: "sprechen", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "говорить с", en: "to speak with", ua: "говорити з" } },
-      { verb: "streiten", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "спорить с", en: "to argue with", ua: "сваритися з" } },
-      { verb: "teilnehmen", correct: "an", case: "Dativ", probability: 4, translations: { ru: "участвовать в", en: "to participate in", ua: "брати участь у" } },
-      { verb: "telefonieren", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "разговаривать по телефону с", en: "to call", ua: "телефонувати з" } },
-      { verb: "träumen", correct: "von", case: "Dativ", probability: 4, translations: { ru: "мечтать о", en: "to dream of", ua: "мріяти про" } },
-      { verb: "sich treffen", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "встречаться с", en: "to meet with", ua: "зустрічатися з" } },
-      { verb: "sich unterhalten", correct: "mit", case: "Dativ", probability: 4, translations: { ru: "беседовать с", en: "to have a conversation with", ua: "спілкуватися з" } }
+      { verb: "abhängen", correct: "von", case: "Dativ", probability: 7, translations: { ru: "зависеть от", en: "to depend on", ua: "залежати від" } },
+      { verb: "sich abstimmen", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "согласовываться с", en: "to coordinate with", ua: "узгоджувати з" } },
+      { verb: "anmelden", correct: "bei", case: "Dativ", probability: 7, translations: { ru: "регистрироваться у/в", en: "to register at/with", ua: "реєструватися у/в" } },
+      { verb: "sich auskennen", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "разбираться в", en: "to be familiar with", ua: "розбиратися в" } },
+      { verb: "sich bedanken", correct: "bei", case: "Dativ", probability: 7, translations: { ru: "благодарить кого-то", en: "to thank someone", ua: "дякувати комусь" } },
+      { verb: "befreien", correct: "von", case: "Dativ", probability: 7, translations: { ru: "освобождать от", en: "to free from", ua: "звільняти від" } },
+      { verb: "beginnen", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "начинать с", en: "to begin with", ua: "починати з" } },
+      { verb: "berichten", correct: "von", case: "Dativ", probability: 7, translations: { ru: "докладывать о", en: "to report on", ua: "доповідати про" } },
+      { verb: "sich beschäftigen", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "заниматься чем-то", en: "to be busy with", ua: "займатися чимось" } },
+      { verb: "bestehen", correct: "aus", case: "Dativ", probability: 7, translations: { ru: "состоять из", en: "to consist of", ua: "складатися з" } },
+      { verb: "chatten", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "переписываться с", en: "to chat with", ua: "спілкуватися з" } },
+      { verb: "diskutieren", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "дискутировать с", en: "to discuss with", ua: "дискутувати з" } },
+      { verb: "einladen", correct: "zu", case: "Dativ", probability: 7, translations: { ru: "приглашать на", en: "to invite to", ua: "запрошувати на" } },
+      { verb: "erfahren", correct: "von", case: "Dativ", probability: 7, translations: { ru: "узнать о", en: "to learn about", ua: "дізнатися про" } },
+      { verb: "sich erkundigen", correct: "nach", case: "Dativ", probability: 7, translations: { ru: "осведомляться о", en: "to inquire about", ua: "довідуватися про" } },
+      { verb: "sich entschuldigen", correct: "bei", case: "Dativ", probability: 7, translations: { ru: "извиняться перед", en: "to apologize to", ua: "вибачатися перед" } },
+      { verb: "erzählen", correct: "von", case: "Dativ", probability: 7, translations: { ru: "рассказывать о", en: "to tell about", ua: "розповідати про" } },
+      { verb: "gehören", correct: "zu", case: "Dativ", probability: 7, translations: { ru: "принадлежать к", en: "to belong to", ua: "належати до" } },
+      { verb: "klarkommen", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "ладить с", en: "to get along with", ua: "ладнати з" } },
+      { verb: "leiden", correct: "unter", case: "Dativ", probability: 7, translations: { ru: "страдать от", en: "to suffer from", ua: "страждати від" } },
+      { verb: "reden", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "разговаривать с", en: "to talk with", ua: "говорити з" } },
+      { verb: "sprechen", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "говорить с", en: "to speak with", ua: "говорити з" } },
+      { verb: "schuld sein", correct: "an", case: "Dativ", probability: 7, translations: { ru: "быть виноватым в", en: "to be guilty of", ua: "бути винним у" } },
+      { verb: "schützen", correct: "vor", case: "Dativ", probability: 7, translations: { ru: "защищать от", en: "to protect from", ua: "захищати від" } },
+      { verb: "streiten", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "спорить с", en: "to argue with", ua: "сваритися з" } },
+      { verb: "teilnehmen", correct: "an", case: "Dativ", probability: 7, translations: { ru: "участвовать в", en: "to participate in", ua: "брати участь у" } },
+      { verb: "telefonieren", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "разговаривать по телефону с", en: "to call", ua: "телефонувати з" } },
+      { verb: "träumen", correct: "von", case: "Dativ", probability: 7, translations: { ru: "мечтать о", en: "to dream of", ua: "мріяти про" } },
+      { verb: "trennen", correct: "von", case: "Dativ", probability: 7, translations: { ru: "отделять от", en: "to separate from", ua: "відокремлювати від" } },
+      { verb: "sich treffen", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "встречаться с", en: "to meet with", ua: "зустрічатися з" } },
+      { verb: "sich verabschieden", correct: "von", case: "Dativ", probability: 7, translations: { ru: "прощаться с", en: "to say goodbye to", ua: "прощатися з" } },
+      { verb: "sich überzeugen", correct: "von", case: "Dativ", probability: 7, translations: { ru: "убедиться в", en: "to be convinced of", ua: "переконатися в" } },
+      { verb: "umgehen", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "обращаться с", en: "to deal with", ua: "поводитися з" } },
+      { verb: "unterstützen", correct: "bei", case: "Dativ", probability: 7, translations: { ru: "поддерживать в", en: "to support with", ua: "підтримувати у" } },
+      { verb: "sich unterhalten", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "беседовать с", en: "to have a conversation with", ua: "спілкуватися з" } }
     ];
 
-    const prepositions = ["an", "auf", "bei", "für", "in", "mit", "über", "unter", "um", "von", "zu"];
+    const prepositions = [...new Set(data.map(item => item.correct))];
 
     let currentLang = "en";
     let currentCorrect = "";
@@ -276,10 +311,10 @@
 
       if (selected === correct) {
         result.textContent = resultText[currentLang].correct;
-        if (item.probability > 1) item.probability -= 1;
+        if (item.probability > 2) item.probability -= 2;
       } else {
         result.innerHTML = `${resultText[currentLang].wrong} <span class="correct-answer">${correct}</span>`;
-        if (item.probability < 18) item.probability += 3;
+        if (item.probability < 39) item.probability += 4;
       }
 
       document.getElementById("verb").innerHTML = formatVerb(item.verb) + ` ${item.correct}`;
