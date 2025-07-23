@@ -6,6 +6,8 @@ const urlsToCache = [
   // '/script.js', // Если у вас есть JS файл
   // Добавьте все другие ресурсы, которые хотите кэшировать
   // Например, '/icons/icon-192x192.png', '/icons/icon-512x512.png'
+  '/DEVerbsPreps/icon-192x192.png', // Иконка
+  '/DEVerbsPreps/icon-512x512.png', // Иконка
   '/DEVerbsPreps/android-chrome-192x192.png', // Иконка для Android
   '/DEVerbsPreps/android-chrome-512x512.png', // Иконка для Android
   '/DEVerbsPreps/favicon.ico', // Фавикон
