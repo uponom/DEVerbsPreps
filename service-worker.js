@@ -1,4 +1,4 @@
-const CACHE_NAME = 'DEVerbsPreps-cache-v1'; // Имя кэша, меняйте его, когда обновляете файлы
+const CACHE_NAME = 'DEVerbsPreps-cache-v2'; // Имя кэша, меняйте его, когда обновляете файлы
 const urlsToCache = [
   '/DEVerbsPreps/', // Важно, если ваша страница доступна по корневому URL
   '/DEVerbsPreps/index.html',
