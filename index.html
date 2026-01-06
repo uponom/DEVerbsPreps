@@ -182,6 +182,24 @@
       margin-bottom: 8px;
     }
 
+    .example-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .example-speak-button {
+      padding: 4px 8px;
+      font-size: 18px;
+      line-height: 1;
+      border-radius: 8px;
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: 1px solid var(--button-border);
+      cursor: pointer;
+    }
+
     .modal-overlay {
       display: none;
       position: fixed;
@@ -262,7 +280,10 @@
   <p id="result"></p>
   <button id="nextButton" onclick="newQuestion()">➡️</button>
 
-  <div id="example" class="example-text"></div>
+  <div class="example-row">
+    <div id="example" class="example-text"></div>
+    <button id="exampleSpeakButton" class="example-speak-button" type="button" aria-label="Speak example" style="display:none;">🔊</button>
+  </div>
 
   <div class="progress-container">
     <div class="progress-text" id="progressText"></div>
@@ -382,7 +403,7 @@
     const themeToggleIcons = { light: "☀️", dark: "🌙" };
 
     let currentTheme = "light";
-    const APP_VERSION = "v4";
+    const APP_VERSION = "v5";
     const speechToggleIcons = { on: "🔊", off: "🔇" };
 
     function setLanguage(lang) {
@@ -483,8 +504,10 @@
         // Добавляем проверку на пробел перед предлогом
         const replaced = example.replace(new RegExp(`\\s${escaped}`, "gu"), " ...");
         document.getElementById("example").textContent = replaced;
+        document.getElementById("exampleSpeakButton").style.display = "none";
       } else {
         document.getElementById("example").textContent = "";
+        document.getElementById("exampleSpeakButton").style.display = "none";
       }
 
       const container = document.getElementById("options");
@@ -525,6 +548,13 @@
       document.getElementById("nextButton").style.display = "inline-block";
       // Добавлено: вывод примера
       document.getElementById("example").textContent = item.example ? item.example : "";
+      const exampleButton = document.getElementById("exampleSpeakButton");
+      if (item.example) {
+        exampleButton.style.display = "inline-block";
+        exampleButton.onclick = () => speakGermanForce(item.example);
+      } else {
+        exampleButton.style.display = "none";
+      }
       speakGerman(`${item.verb} ${item.correct}`);
       updateProgress();
     }
