@@ -7,11 +7,41 @@
   <link rel="icon" type="image/png" href="/DEVerbsPreps/favicon.ico">
   <title>Deutsch Verben mit Präpositionen</title>
   <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #555555;
+      --muted-2: #777777;
+      --button-bg: #f2f2f2;
+      --button-text: #111111;
+      --button-border: #cccccc;
+      --card-bg: #ffffff;
+      --progress-bg: #b22222;
+      --progress-fill: #1a8f3b;
+      --overlay: rgba(0, 0, 0, 0.6);
+    }
+
+    body.theme-dark {
+      --bg: #0f1115;
+      --text: #e6e6e6;
+      --muted: #b6b6b6;
+      --muted-2: #999999;
+      --button-bg: #1e232b;
+      --button-text: #e6e6e6;
+      --button-border: #3a3f48;
+      --card-bg: #151a21;
+      --progress-bg: #5b1a1a;
+      --progress-fill: #2aa44f;
+      --overlay: rgba(0, 0, 0, 0.7);
+    }
+
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
       max-width: 700px;
       margin: auto;
+      background-color: var(--bg);
+      color: var(--text);
     }
 
     .lang-switcher {
@@ -29,7 +59,7 @@
     }
 
     .translation {
-      color: #555;
+      color: var(--muted);
       font-style: italic;
       font-size: 20px;
       margin-bottom: 5px;
@@ -42,7 +72,7 @@
     }
 
     .verb-display .sich {
-      color: #777;
+      color: var(--muted-2);
     }
 
     button {
@@ -51,6 +81,9 @@
       font-size: 24px;
       cursor: pointer;
       border-radius: 10px;
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: 1px solid var(--button-border);
     }
 
     #options {
@@ -86,23 +119,57 @@
     .progress-bar {
       width: 100%;
       height: 20px;
-      background-color: #b22222;
+      background-color: var(--progress-bg);
       border-radius: 10px;
       overflow: hidden;
     }
 
     .progress-fill {
       height: 100%;
-      background-color: green;
+      background-color: var(--progress-fill);
       width: 0%;
       transition: width 0.3s;
     }
 
     .example-text {
       font-style: italic;
-      color: #888;
+      color: var(--muted);
       font-size: 20px;
       margin-bottom: 8px;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--overlay);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      color: var(--text);
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .theme-switcher {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .theme-switcher button {
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 8px;
     }
 
     @media (max-width: 600px) {
@@ -129,13 +196,17 @@
       .correct-answer {
         font-size: 30px;
       }
+      .theme-switcher button {
+        font-size: 16px;
+        padding: 8px 10px;
+      }
     }
   </style>
 </head>
 <body>
 
-    <div id="congratsModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.6); z-index:1000; justify-content:center; align-items:center;">
-    <div style="background:#fff; padding:30px; border-radius:12px; text-align:center; max-width:90%;">
+    <div id="congratsModal" class="modal-overlay">
+    <div class="modal-content">
         <h2>🎉 Glückwunsch! Du hast den Test abgeschlossen!</h2>
         <button onclick="restartTest()" style="margin-top:20px; font-size:20px; padding:10px 20px; border-radius:8px;">🔁 Test erneut starten</button>
     </div>
@@ -161,7 +232,11 @@
       <div class="progress-fill" id="progressFill"></div>
     </div>
   </div>
-  <div id="penaltyPoints" style="margin-top:5px; font-size:14px; color:#666;">Strafpunkte: 0</div>
+  <div id="penaltyPoints" style="margin-top:5px; font-size:14px; color:var(--muted);">Strafpunkte: 0</div>
+
+  <div class="theme-switcher">
+    <button id="themeToggle" type="button" onclick="toggleTheme()"></button>
+  </div>
 
   <script>
     // Data for verbs with prepositions
@@ -266,9 +341,14 @@
       ua: { correct: "✅ Правильно!", wrong: "❌ Неправильно! Правильна відповідь:" }
     };
 
+    const themeToggleIcons = { light: "☀️", dark: "🌙" };
+
+    let currentTheme = "light";
+
     function setLanguage(lang) {
       currentLang = lang;
       newQuestion();
+      updateThemeButton();
     }
 
     function formatVerb(verb) {
@@ -295,7 +375,7 @@
       const { verb, correct, translations, case: grammarCase, example } = item;
 
       currentCorrect = correct;
-      document.getElementById("translation").innerHTML = `${translations[currentLang]} <span style="color:#999; font-size:16px;">(${grammarCase})</span>`;
+      document.getElementById("translation").innerHTML = `${translations[currentLang]} <span style="color:var(--muted); font-size:16px;">(${grammarCase})</span>`;
       document.getElementById("verb").innerHTML = formatVerb(verb);
       document.getElementById("result").textContent = "";
       document.getElementById("nextButton").style.display = "none";
@@ -372,6 +452,34 @@
         newQuestion();
     }
 
+    function updateThemeButton() {
+      const button = document.getElementById("themeToggle");
+      if (!button) return;
+      const key = currentTheme === "dark" ? "dark" : "light";
+      button.textContent = themeToggleIcons[key];
+    }
+
+    function setTheme(theme) {
+      currentTheme = theme;
+      document.body.classList.toggle("theme-dark", theme === "dark");
+      localStorage.setItem("theme", theme);
+      updateThemeButton();
+    }
+
+    function toggleTheme() {
+      setTheme(currentTheme === "dark" ? "light" : "dark");
+    }
+
+    function initTheme() {
+      const stored = localStorage.getItem("theme");
+      if (stored === "dark" || stored === "light") {
+        setTheme(stored);
+        return;
+      }
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      setTheme(prefersDark ? "dark" : "light");
+    }
+
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/DEVerbsPreps/service-worker.js', { scope: '/DEVerbsPreps/' })
@@ -384,6 +492,7 @@
       });
     }
 
+    initTheme();
     newQuestion();
     updateProgress();
 
