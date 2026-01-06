@@ -47,16 +47,22 @@
     .lang-switcher {
       display: flex;
       justify-content: flex-end;
+      align-items: center;
+      gap: 6px;
       margin-bottom: 10px;
     }
 
     .lang-switcher button {
-      padding: 6px 10px;
-      margin-left: 5px;
+      width: 36px;
+      height: 28px;
+      padding: 0;
+      margin-left: 0;
       font-size: 10px;
+      line-height: 1;
       cursor: pointer;
       border-radius: 8px;
     }
+
 
     .translation {
       color: var(--muted);
@@ -160,16 +166,11 @@
       max-width: 90%;
     }
 
-    .theme-switcher {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .theme-switcher button {
-      font-size: 14px;
-      padding: 8px 12px;
-      border-radius: 8px;
+    .app-version {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: right;
     }
 
     @media (max-width: 600px) {
@@ -187,18 +188,15 @@
         padding: 8px 10px;
       }
       .lang-switcher button {
+        width: 48px;
+        height: 36px;
         font-size: 16px;
-        padding: 8px 10px;
       }
       #result {
         font-size: 26px;
       }
       .correct-answer {
         font-size: 30px;
-      }
-      .theme-switcher button {
-        font-size: 16px;
-        padding: 8px 10px;
       }
     }
   </style>
@@ -216,6 +214,7 @@
     <button onclick="setLanguage('en')">EN</button>
     <button onclick="setLanguage('ua')">UA</button>
     <button onclick="setLanguage('ru')">RU</button>
+    <button id="themeToggle" class="theme-toggle" type="button" onclick="toggleTheme()"></button>
   </div>
 
   <div class="translation" id="translation"></div>
@@ -234,9 +233,7 @@
   </div>
   <div id="penaltyPoints" style="margin-top:5px; font-size:14px; color:var(--muted);">Strafpunkte: 0</div>
 
-  <div class="theme-switcher">
-    <button id="themeToggle" type="button" onclick="toggleTheme()"></button>
-  </div>
+  <div id="appVersion" class="app-version"></div>
 
   <script>
     // Data for verbs with prepositions
@@ -344,6 +341,7 @@
     const themeToggleIcons = { light: "☀️", dark: "🌙" };
 
     let currentTheme = "light";
+    const APP_VERSION = "v3";
 
     function setLanguage(lang) {
       currentLang = lang;
@@ -481,10 +479,29 @@
     }
 
     if ('serviceWorker' in navigator) {
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return;
+        refreshing = true;
+        window.location.reload();
+      });
+
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/DEVerbsPreps/service-worker.js', { scope: '/DEVerbsPreps/' })
           .then(registration => {
             console.log('Service Worker registered with scope:', registration.scope);
+            if (registration.waiting) {
+              registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+            }
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              if (!newWorker) return;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  newWorker.postMessage({ type: 'SKIP_WAITING' });
+                }
+              });
+            });
           })
           .catch(error => {
             console.error('Service Worker registration failed:', error);
@@ -493,6 +510,7 @@
     }
 
     initTheme();
+    document.getElementById("appVersion").textContent = `Version: ${APP_VERSION}`;
     newQuestion();
     updateProgress();
 

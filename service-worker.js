@@ -1,4 +1,5 @@
-const CACHE_NAME = 'DEVerbsPreps-cache-v2'; // Имя кэша, меняйте его, когда обновляете файлы
+const CACHE_VERSION = 'v3';
+const CACHE_NAME = `DEVerbsPreps-cache-${CACHE_VERSION}`;
 const urlsToCache = [
   '/DEVerbsPreps/', // Важно, если ваша страница доступна по корневому URL
   '/DEVerbsPreps/index.html',
@@ -25,6 +26,7 @@ self.addEventListener('install', (event) => {
         return cache.addAll(urlsToCache); // Добавляем все нужные файлы в кэш
       })
   );
+  self.skipWaiting();
 });
 
 self.addEventListener('fetch', (event) => {
@@ -41,17 +43,23 @@ self.addEventListener('fetch', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-  // Вызывается, когда Service Worker активируется (и старый удаляется)
+  // Activate service worker and cleanup old caches
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
             console.log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName); // Удаляем старые кэши
+            return caches.delete(cacheName);
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
