@@ -102,6 +102,19 @@
       background-color: var(--case-dat-bg);
     }
 
+    .speak-button {
+      margin-left: 6px;
+      padding: 4px 8px;
+      font-size: 18px;
+      line-height: 1;
+      border-radius: 8px;
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: 1px solid var(--button-border);
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
     .verb-display .sich {
       color: var(--muted-2);
     }
@@ -239,6 +252,7 @@
     <button onclick="setLanguage('en')">EN</button>
     <button onclick="setLanguage('ua')">UA</button>
     <button onclick="setLanguage('ru')">RU</button>
+    <button id="speechToggle" type="button" onclick="toggleSpeech()"></button>
     <button id="themeToggle" class="theme-toggle" type="button" onclick="toggleTheme()"></button>
   </div>
 
@@ -350,6 +364,8 @@
     let currentLang = "en";
     let currentCorrect = "";
     let currentIndex = null;
+    let germanVoice = null;
+    let speechEnabled = false;
 
     const nextButtonText = {
       ru: "➡️ Следующий",
@@ -366,12 +382,66 @@
     const themeToggleIcons = { light: "☀️", dark: "🌙" };
 
     let currentTheme = "light";
-    const APP_VERSION = "v3";
+    const APP_VERSION = "v4";
+    const speechToggleIcons = { on: "🔊", off: "🔇" };
 
     function setLanguage(lang) {
       currentLang = lang;
       newQuestion();
       updateThemeButton();
+    }
+
+    function getCaseClass(grammarCase) {
+      if (grammarCase === "Akkusativ") return "case-akk";
+      if (grammarCase === "Dativ") return "case-dat";
+      return "";
+    }
+
+    function updateSpeechButton() {
+      const button = document.getElementById("speechToggle");
+      if (!button) return;
+      button.textContent = speechEnabled ? speechToggleIcons.on : speechToggleIcons.off;
+    }
+
+    function toggleSpeech() {
+      speechEnabled = !speechEnabled;
+      updateSpeechButton();
+    }
+
+    function pickGermanVoice() {
+      if (!('speechSynthesis' in window)) return;
+      const voices = window.speechSynthesis.getVoices();
+      germanVoice = voices.find((v) => (v.lang || "").toLowerCase().startsWith("de")) || null;
+    }
+
+    function speakGerman(text) {
+      try {
+        if (!('speechSynthesis' in window)) return;
+        if (!text || !speechEnabled) return;
+        if (!germanVoice) pickGermanVoice();
+        const utterance = new SpeechSynthesisUtterance(text);
+        if (germanVoice) utterance.voice = germanVoice;
+        utterance.lang = (germanVoice && germanVoice.lang) ? germanVoice.lang : "de-DE";
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+      } catch (error) {
+        console.warn("Speech synthesis unavailable:", error);
+      }
+    }
+
+    function speakGermanForce(text) {
+      try {
+        if (!('speechSynthesis' in window)) return;
+        if (!text) return;
+        if (!germanVoice) pickGermanVoice();
+        const utterance = new SpeechSynthesisUtterance(text);
+        if (germanVoice) utterance.voice = germanVoice;
+        utterance.lang = (germanVoice && germanVoice.lang) ? germanVoice.lang : "de-DE";
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+      } catch (error) {
+        console.warn("Speech synthesis unavailable:", error);
+      }
     }
 
     function formatVerb(verb) {
@@ -399,7 +469,7 @@
 
       currentCorrect = correct;
       document.getElementById("translation").innerHTML = `${translations[currentLang]} <span style="color:var(--muted); font-size:16px;">(${grammarCase})</span>`;
-      const caseClass = grammarCase === "Akkusativ" ? "case-akk" : grammarCase === "Dativ" ? "case-dat" : "";
+      const caseClass = getCaseClass(grammarCase);
       document.getElementById("translation").textContent = translations[currentLang];
       document.getElementById("verb").innerHTML = `${formatVerb(verb)} <span class="case-badge ${caseClass}">${grammarCase}</span>`;
       document.getElementById("result").textContent = "";
@@ -443,10 +513,19 @@
         if (item.probability < 39) item.probability += 4;
       }
 
-      document.getElementById("verb").innerHTML = formatVerb(item.verb) + ` ${item.correct}`;
+      const answerCaseClass = getCaseClass(item.case);
+      document.getElementById("verb").innerHTML =
+        `${formatVerb(item.verb)} ${item.correct}` +
+        ` <span class="case-badge ${answerCaseClass}">${item.case}</span>` +
+        ` <button id="speakAnswerButton" class="speak-button" type="button" aria-label="Speak answer">🔊</button>`;
+      const speakButton = document.getElementById("speakAnswerButton");
+      if (speakButton) {
+        speakButton.onclick = () => speakGermanForce(`${item.verb} ${item.correct}`);
+      }
       document.getElementById("nextButton").style.display = "inline-block";
       // Добавлено: вывод примера
       document.getElementById("example").textContent = item.example ? item.example : "";
+      speakGerman(`${item.verb} ${item.correct}`);
       updateProgress();
     }
 
@@ -537,6 +616,11 @@
     }
 
     initTheme();
+    updateSpeechButton();
+    if ('speechSynthesis' in window) {
+      pickGermanVoice();
+      window.speechSynthesis.addEventListener('voiceschanged', pickGermanVoice);
+    }
     document.getElementById("appVersion").textContent = `Version: ${APP_VERSION}`;
     newQuestion();
     updateProgress();
