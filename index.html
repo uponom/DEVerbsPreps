@@ -19,6 +19,8 @@
       --progress-bg: #b22222;
       --progress-fill: #1a8f3b;
       --overlay: rgba(0, 0, 0, 0.6);
+      --case-akk-bg: #fde7ef;
+      --case-dat-bg: #e6f2ff;
     }
 
     body.theme-dark {
@@ -33,6 +35,8 @@
       --progress-bg: #5b1a1a;
       --progress-fill: #2aa44f;
       --overlay: rgba(0, 0, 0, 0.7);
+      --case-akk-bg: #3a1f2a;
+      --case-dat-bg: #233a5c;
     }
 
     body {
@@ -75,6 +79,27 @@
       font-size: 24px;
       margin: 10px 0 15px;
       font-weight: bold;
+    }
+
+    .case-badge {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 2px 8px;
+      font-size: 16px;
+      font-weight: normal;
+      border-radius: 8px;
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: 1px solid var(--button-border);
+      vertical-align: middle;
+    }
+
+    .case-badge.case-akk {
+      background-color: var(--case-akk-bg);
+    }
+
+    .case-badge.case-dat {
+      background-color: var(--case-dat-bg);
     }
 
     .verb-display .sich {
@@ -374,7 +399,9 @@
 
       currentCorrect = correct;
       document.getElementById("translation").innerHTML = `${translations[currentLang]} <span style="color:var(--muted); font-size:16px;">(${grammarCase})</span>`;
-      document.getElementById("verb").innerHTML = formatVerb(verb);
+      const caseClass = grammarCase === "Akkusativ" ? "case-akk" : grammarCase === "Dativ" ? "case-dat" : "";
+      document.getElementById("translation").textContent = translations[currentLang];
+      document.getElementById("verb").innerHTML = `${formatVerb(verb)} <span class="case-badge ${caseClass}">${grammarCase}</span>`;
       document.getElementById("result").textContent = "";
       document.getElementById("nextButton").style.display = "none";
       document.getElementById("nextButton").textContent = nextButtonText[currentLang];
