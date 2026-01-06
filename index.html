@@ -67,6 +67,10 @@
       border-radius: 8px;
     }
 
+    .lang-switcher button.active {
+      background-color: var(--bg);
+    }
+
 
     .translation {
       color: var(--muted);
@@ -403,13 +407,25 @@
     const themeToggleIcons = { light: "☀️", dark: "🌙" };
 
     let currentTheme = "light";
-    const APP_VERSION = "v5";
+    const APP_VERSION = "v6";
     const speechToggleIcons = { on: "🔊", off: "🔇" };
 
     function setLanguage(lang) {
       currentLang = lang;
       newQuestion();
+      updateLanguageButtons();
       updateThemeButton();
+    }
+
+    function updateLanguageButtons() {
+      document.querySelectorAll(".lang-switcher button").forEach((btn) => {
+        const lang = btn.getAttribute("onclick");
+        const isLangButton = lang && lang.includes("setLanguage(");
+        if (!isLangButton) return;
+        const match = lang.match(/setLanguage\('([a-z]+)'\)/);
+        const isActive = match && match[1] === currentLang;
+        btn.classList.toggle("active", Boolean(isActive));
+      });
     }
 
     function getCaseClass(grammarCase) {
@@ -647,6 +663,7 @@
 
     initTheme();
     updateSpeechButton();
+    updateLanguageButtons();
     if ('speechSynthesis' in window) {
       pickGermanVoice();
       window.speechSynthesis.addEventListener('voiceschanged', pickGermanVoice);
