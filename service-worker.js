@@ -1,43 +1,43 @@
-const CACHE_VERSION = 'v6';
+const CACHE_VERSION = 'v7';
 const CACHE_NAME = `DEVerbsPreps-cache-${CACHE_VERSION}`;
 const urlsToCache = [
-  '/DEVerbsPreps/', // Важно, если ваша страница доступна по корневому URL
+  '/DEVerbsPreps/', // Important if your page is available at the root URL
   '/DEVerbsPreps/index.html',
-  // '/style.css', // Если у вас есть CSS файл
-  // '/script.js', // Если у вас есть JS файл
-  // Добавьте все другие ресурсы, которые хотите кэшировать
-  // Например, '/icons/icon-192x192.png', '/icons/icon-512x512.png'
-  '/DEVerbsPreps/icon-192x192.png', // Иконка
-  '/DEVerbsPreps/icon-512x512.png', // Иконка
-  '/DEVerbsPreps/android-chrome-192x192.png', // Иконка для Android
-  '/DEVerbsPreps/android-chrome-512x512.png', // Иконка для Android
-  '/DEVerbsPreps/favicon.ico', // Фавикон
-  '/DEVerbsPreps/apple-touch-icon.png', // Иконка для iOS
-  '/DEVerbsPreps/favicon-16x16.png', // Фавикон 16x16
-  '/DEVerbsPreps/favicon-32x32.png' // Фавикон 32x32
+  // '/style.css', // If you have a CSS file
+  // '/script.js', // If you have a JS file
+  // Add any other resources you want to cache
+  // For example, '/icons/icon-192x192.png', '/icons/icon-512x512.png'
+  '/DEVerbsPreps/icon-192x192.png', // Icon
+  '/DEVerbsPreps/icon-512x512.png', // Icon
+  '/DEVerbsPreps/android-chrome-192x192.png', // Android icon
+  '/DEVerbsPreps/android-chrome-512x512.png', // Android icon
+  '/DEVerbsPreps/favicon.ico', // Favicon
+  '/DEVerbsPreps/apple-touch-icon.png', // iOS icon
+  '/DEVerbsPreps/favicon-16x16.png', // Favicon 16x16
+  '/DEVerbsPreps/favicon-32x32.png' // Favicon 32x32
 ];
 
 self.addEventListener('install', (event) => {
-  // Вызывается, когда Service Worker устанавливается
+  // Called when the Service Worker is installed
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('Opened cache');
-        return cache.addAll(urlsToCache); // Добавляем все нужные файлы в кэш
+        return cache.addAll(urlsToCache); // Add all required files to cache
       })
   );
   self.skipWaiting();
 });
 
 self.addEventListener('fetch', (event) => {
-  // Вызывается при каждом сетевом запросе страницы
+  // Called on every network request from the page
   event.respondWith(
-    caches.match(event.request) // Пытаемся найти запрошенный ресурс в кэше
+    caches.match(event.request) // Try to find the requested resource in cache
       .then((response) => {
         if (response) {
-          return response; // Если нашли, отдаем из кэша
+          return response; // If found, serve from cache
         }
-        return fetch(event.request); // Иначе - делаем обычный сетевой запрос
+        return fetch(event.request); // Otherwise do a normal network request
       })
   );
 });

@@ -134,6 +134,14 @@
       border: 1px solid var(--button-border);
     }
 
+    button.prep-akk {
+      background-color: var(--case-akk-bg);
+    }
+
+    button.prep-dat {
+      background-color: var(--case-dat-bg);
+    }
+
     #options {
       display: flex;
       flex-wrap: wrap;
@@ -384,32 +392,45 @@
       { verb: "sich unterhalten", correct: "mit", case: "Dativ", probability: 7, translations: { ru: "беседовать с", en: "to have a conversation with", ua: "спілкуватися з" }, example: "Ich unterhalte mich mit meinem Nachbarn." }
     ];
 
+    // Unique preposition options for the quiz buttons.
     const prepositions = [...new Set(data.map(item => item.correct))].sort();
 
+    // Case-specific prepositions (two-way prepositions are excluded on purpose).
+    const akkPrepositions = new Set(["bis", "durch", "für", "gegen", "ohne", "um", "entlang"]);
+    const datPrepositions = new Set(["aus", "außer", "bei", "mit", "nach", "seit", "von", "zu", "gegenüber", "entgegen"]);
+
+    // Runtime state for the current session.
     let currentLang = "en";
     let currentCorrect = "";
     let currentIndex = null;
     let germanVoice = null;
     let speechEnabled = false;
 
+    // UI labels for the "next" button.
     const nextButtonText = {
       ru: "➡️ Следующий",
       en: "➡️ Next",
       ua: "➡️ Наступний"
     };
 
+    // UI labels for result messages.
     const resultText = {
       ru: { correct: "✅ Правильно!", wrong: "❌ Неправильно! Правильный ответ:" },
       en: { correct: "✅ Correct!", wrong: "❌ Wrong! Correct answer:" },
       ua: { correct: "✅ Правильно!", wrong: "❌ Неправильно! Правильна відповідь:" }
     };
 
+    // Theme toggle icons.
     const themeToggleIcons = { light: "☀️", dark: "🌙" };
 
+    // Current theme name.
     let currentTheme = "light";
-    const APP_VERSION = "v6";
+    // App version label shown in UI.
+    const APP_VERSION = "v7";
+    // Speech toggle icons.
     const speechToggleIcons = { on: "🔊", off: "🔇" };
 
+    // Switch UI language and refresh the question.
     function setLanguage(lang) {
       currentLang = lang;
       newQuestion();
@@ -417,6 +438,7 @@
       updateThemeButton();
     }
 
+    // Update active language button styling.
     function updateLanguageButtons() {
       document.querySelectorAll(".lang-switcher button").forEach((btn) => {
         const lang = btn.getAttribute("onclick");
@@ -428,29 +450,34 @@
       });
     }
 
+    // Map grammatical case to badge class.
     function getCaseClass(grammarCase) {
       if (grammarCase === "Akkusativ") return "case-akk";
       if (grammarCase === "Dativ") return "case-dat";
       return "";
     }
 
+    // Refresh the speech toggle icon.
     function updateSpeechButton() {
       const button = document.getElementById("speechToggle");
       if (!button) return;
       button.textContent = speechEnabled ? speechToggleIcons.on : speechToggleIcons.off;
     }
 
+    // Enable or disable speech synthesis.
     function toggleSpeech() {
       speechEnabled = !speechEnabled;
       updateSpeechButton();
     }
 
+    // Pick a German TTS voice if available.
     function pickGermanVoice() {
       if (!('speechSynthesis' in window)) return;
       const voices = window.speechSynthesis.getVoices();
       germanVoice = voices.find((v) => (v.lang || "").toLowerCase().startsWith("de")) || null;
     }
 
+    // Speak text only if speech is enabled.
     function speakGerman(text) {
       try {
         if (!('speechSynthesis' in window)) return;
@@ -466,6 +493,7 @@
       }
     }
 
+    // Speak text regardless of the toggle.
     function speakGermanForce(text) {
       try {
         if (!('speechSynthesis' in window)) return;
@@ -481,6 +509,7 @@
       }
     }
 
+    // Format reflexive verbs for display.
     function formatVerb(verb) {
       if (verb.startsWith("sich ")) {
         const parts = verb.split(" ");
@@ -489,6 +518,7 @@
       return verb;
     }
 
+    // Weighted random selection based on probability.
     function getWeightedRandomIndex() {
       const pool = [];
       data.forEach((item, index) => {
@@ -499,6 +529,7 @@
       return pool[Math.floor(Math.random() * pool.length)];
     }
 
+    // Render a new quiz question.
     function newQuestion() {
       currentIndex = getWeightedRandomIndex();
       const item = data[currentIndex];
@@ -532,11 +563,17 @@
       prepositions.forEach((prep) => {
         const btn = document.createElement("button");
         btn.textContent = prep;
+        if (akkPrepositions.has(prep)) {
+          btn.classList.add("prep-akk");
+        } else if (datPrepositions.has(prep)) {
+          btn.classList.add("prep-dat");
+        }
         btn.onclick = () => handleAnswer(prep);
         container.appendChild(btn);
       });
     }
 
+    // Handle the user's answer selection.
     function handleAnswer(selected) {
       const container = document.getElementById("options");
       container.innerHTML = "";
@@ -575,6 +612,7 @@
       updateProgress();
     }
 
+    // Update progress and penalty stats.
     function updateProgress() {
         const total = data.length;
         const mastered = data.filter(item => item.probability === 1).length;
@@ -595,6 +633,7 @@
         }
     }
 
+    // Reset probabilities and restart the test.
     function restartTest() {
         data.forEach(item => item.probability = 4);
         document.getElementById("congratsModal").style.display = "none";
@@ -602,6 +641,7 @@
         newQuestion();
     }
 
+    // Refresh theme toggle icon.
     function updateThemeButton() {
       const button = document.getElementById("themeToggle");
       if (!button) return;
@@ -609,6 +649,7 @@
       button.textContent = themeToggleIcons[key];
     }
 
+    // Apply the given theme and persist it.
     function setTheme(theme) {
       currentTheme = theme;
       document.body.classList.toggle("theme-dark", theme === "dark");
@@ -616,10 +657,12 @@
       updateThemeButton();
     }
 
+    // Toggle between light and dark themes.
     function toggleTheme() {
       setTheme(currentTheme === "dark" ? "light" : "dark");
     }
 
+    // Initialize theme based on stored preference or system settings.
     function initTheme() {
       const stored = localStorage.getItem("theme");
       if (stored === "dark" || stored === "light") {
@@ -668,7 +711,7 @@
       pickGermanVoice();
       window.speechSynthesis.addEventListener('voiceschanged', pickGermanVoice);
     }
-    document.getElementById("appVersion").textContent = `Version: ${APP_VERSION}`;
+    document.getElementById("appVersion").textContent = `${APP_VERSION}`;
     newQuestion();
     updateProgress();
 
