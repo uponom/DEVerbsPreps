@@ -1,0 +1,1653 @@
+[
+  {
+    "verb": "abhängen",
+    "correct": "von",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "зависеть от",
+      "en": "to depend on",
+      "ua": "залежати від"
+    },
+    "example": "Unsere Wanderung hängt vom Wetter ab.",
+    "level": "B2"
+  },
+  {
+    "verb": "achten",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "обращать внимание на",
+      "en": "to pay attention to",
+      "ua": "звертати увагу на"
+    },
+    "example": "Achte auf die rote Ampel!",
+    "level": "B2"
+  },
+  {
+    "verb": "anfangen",
+    "correct": "mit",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "начинать с",
+      "en": "to start with",
+      "ua": "починати з"
+    },
+    "example": "Wir können morgen mit dem Umzug anfangen.",
+    "level": "B2"
+  },
+  {
+    "verb": "ankommen",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "зависеть от (быть обусловленным)",
+      "en": "to depend on",
+      "ua": "залежати від"
+    },
+    "example": "Es kommt auf die Uhrzeit an.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich anpassen",
+    "correct": "an",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "приспосабливаться к",
+      "en": "to adapt to",
+      "ua": "пристосовуватися до"
+    },
+    "example": "Du musst dich an die neue Mode anpassen.",
+    "level": "B2"
+  },
+  {
+    "verb": "anrufen",
+    "correct": "bei",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "звонить по телефону в/кому‑либо",
+      "en": "to call at / call (someone) at",
+      "ua": "телефонувати до"
+    },
+    "example": "Du sollst bei Tom anrufen.",
+    "level": "B2"
+  },
+  {
+    "verb": "arbeiten",
+    "correct": "an",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "работать над",
+      "en": "to work on",
+      "ua": "працювати над"
+    },
+    "example": "Ich arbeite an einem neuen Buch.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich ärgern",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "злиться из‑за",
+      "en": "to be annoyed about",
+      "ua": "злитися через"
+    },
+    "example": "Ich ärgere mich über das schlechte Wetter.",
+    "level": "B2"
+  },
+  {
+    "verb": "auffordern",
+    "correct": "zu",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "призывать к, приглашать к",
+      "en": "to invite to, urge to",
+      "ua": "закликати до, запрошувати до"
+    },
+    "example": "Ich möchte dich zum Tanzen auffordern.",
+    "level": "B2"
+  },
+  {
+    "verb": "aufhören",
+    "correct": "mit",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "прекращать, бросать (что‑то)",
+      "en": "to stop, to quit",
+      "ua": "припиняти, кидати"
+    },
+    "example": "Du musst mit dem Rauchen aufhören.",
+    "level": "B2"
+  },
+  {
+    "verb": "aufpassen",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "присматривать за",
+      "en": "to look after",
+      "ua": "наглядати за"
+    },
+    "example": "Die Mutter muss auf ihre Kinder aufpassen.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich aufregen",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "волноваться, раздражаться из‑за",
+      "en": "to get worked up about",
+      "ua": "нервуватися через"
+    },
+    "example": "Sie regt sich immer über den Lärm auf.",
+    "level": "B2"
+  },
+  {
+    "verb": "ausgehen",
+    "correct": "von",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "исходить из",
+      "en": "to assume, to base on",
+      "ua": "виходити з"
+    },
+    "example": "Er geht von hohen Kosten für das Projekt aus.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich bedanken",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "благодарить за",
+      "en": "to thank for",
+      "ua": "дякувати за"
+    },
+    "example": "Paul bedankt sich bei Lisa für die Hilfe.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich befassen",
+    "correct": "mit",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "заниматься чем‑либо",
+      "en": "to deal with, to be concerned with",
+      "ua": "займатися чимось"
+    },
+    "example": "Das Buch befasst sich mit den Verben.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich befreien",
+    "correct": "von",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "освобождаться от",
+      "en": "to free oneself from",
+      "ua": "звільнятися від"
+    },
+    "example": "Sie muss sich von der Last befreien.",
+    "level": "B2"
+  },
+  {
+    "verb": "beginnen",
+    "correct": "mit",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "начинать с",
+      "en": "to begin with",
+      "ua": "розпочинати з"
+    },
+    "example": "Wir beginnen mit den Vokabeln.",
+    "level": "B2"
+  },
+  {
+    "verb": "beitragen",
+    "correct": "zu",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "вносить вклад в",
+      "en": "to contribute to",
+      "ua": "робити внесок у"
+    },
+    "example": "Jeder kann etwas zur Diskussion beitragen.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich beklagen",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "жаловаться на",
+      "en": "to complain about",
+      "ua": "скаржитися на"
+    },
+    "example": "Anna beklagt sich immer über das Wetter.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich bemühen",
+    "correct": "um",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "стараться, добиваться чего‑то",
+      "en": "to strive for, to make an effort for",
+      "ua": "намагатися, докладати зусиль заради"
+    },
+    "example": "Ich bemühe mich stets um Klarheit.",
+    "level": "B2"
+  },
+  {
+    "verb": "berichten",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "сообщать, докладывать о",
+      "en": "to report about",
+      "ua": "повідомляти про"
+    },
+    "example": "Die Journalisten berichten über den Unfall.",
+    "level": "B2"
+  },
+  {
+    "verb": "beruhen",
+    "correct": "auf",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "основываться на",
+      "en": "to be based on",
+      "ua": "ґрунтуватися на"
+    },
+    "example": "Das Urteil beruht auf Beweisen.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich beschäftigen",
+    "correct": "mit",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "заниматься чем‑то",
+      "en": "to be occupied with",
+      "ua": "займатися чимось"
+    },
+    "example": "Ich beschäftige mich mit den Verben.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich beschweren",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "жаловаться на",
+      "en": "to complain about",
+      "ua": "скаржитися на"
+    },
+    "example": "Der Vater beschwert sich über die Kinder.",
+    "level": "B2"
+  },
+  {
+    "verb": "bestehen",
+    "correct": "auf",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "настаивать на",
+      "en": "to insist on",
+      "ua": "наполягати на"
+    },
+    "example": "Sie besteht auf ihr Recht.",
+    "level": "B2"
+  },
+  {
+    "verb": "bestehen",
+    "correct": "aus",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "состоять из",
+      "en": "to consist of",
+      "ua": "складатися з"
+    },
+    "example": "Die Gruppe besteht aus vier Personen.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich bewerben",
+    "correct": "um",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "подаваться на (работу и т. п.)",
+      "en": "to apply for",
+      "ua": "подаватися на"
+    },
+    "example": "Tina kann sich um den Job bewerben.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich beziehen",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "ссылаться на, относиться к",
+      "en": "to refer to",
+      "ua": "посилатися на"
+    },
+    "example": "Dieser Satz bezieht sich auf die letzte Seite.",
+    "level": "B2"
+  },
+  {
+    "verb": "bitten",
+    "correct": "um",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "просить о",
+      "en": "to ask for",
+      "ua": "просити про"
+    },
+    "example": "Ich bitte dich um Entschuldigung.",
+    "level": "B2"
+  },
+  {
+    "verb": "danken",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "благодарить за",
+      "en": "to thank for",
+      "ua": "дякувати за"
+    },
+    "example": "Wir danken dafür, dass sie gekommen sind.",
+    "level": "B2"
+  },
+  {
+    "verb": "denken",
+    "correct": "an",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "думать о",
+      "en": "to think of",
+      "ua": "думати про"
+    },
+    "example": "Denkst du an den Termin heute Abend?",
+    "level": "B2"
+  },
+  {
+    "verb": "dienen",
+    "correct": "zu",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "служить для",
+      "en": "to serve for",
+      "ua": "слугувати для"
+    },
+    "example": "Dieses Gerät dient zum Schneiden von Glas.",
+    "level": "B2"
+  },
+  {
+    "verb": "diskutieren",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "обсуждать, дискутировать о",
+      "en": "to discuss",
+      "ua": "обговорювати"
+    },
+    "example": "Sie diskutieren oft über die Politik.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich eignen",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "подходить для",
+      "en": "to be suitable for",
+      "ua": "підходити для"
+    },
+    "example": "Anna eignet sich sehr gut für den Job.",
+    "level": "B2"
+  },
+  {
+    "verb": "einladen",
+    "correct": "zu",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "приглашать на / к",
+      "en": "to invite to",
+      "ua": "запрошувати на / до"
+    },
+    "example": "Tom hat mich gestern ins Kino eingeladen.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich einsetzen",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "выступать в защиту, заступаться за",
+      "en": "to stand up for",
+      "ua": "виступати за, захищати"
+    },
+    "example": "Die Schüler setzten sich für Tiere ein.",
+    "level": "B2"
+  },
+  {
+    "verb": "einverstanden sein",
+    "correct": "mit",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "быть согласным с",
+      "en": "to agree with",
+      "ua": "бути згодним з"
+    },
+    "example": "Bist du mit der Entscheidung einverstanden?",
+    "level": "B2"
+  },
+  {
+    "verb": "sich entscheiden",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "решаться на, выбирать",
+      "en": "to decide in favor of",
+      "ua": "вирішуватися на, обирати"
+    },
+    "example": "Ich entscheide mich für ein rotes Kleid.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich entschuldigen",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "извиняться за",
+      "en": "to apologize for",
+      "ua": "вибачатися за"
+    },
+    "example": "Bernd entschuldigt sich für die Verspätung.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich erholen",
+    "correct": "von",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "отдыхать от, оправляться от",
+      "en": "to recover from",
+      "ua": "відпочивати від, одужувати після"
+    },
+    "example": "Er muss sich noch von dem Schock erholen.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich erinnern",
+    "correct": "an",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "помнить, вспоминать о",
+      "en": "to remember",
+      "ua": "пам’ятати, згадувати про"
+    },
+    "example": "Sie kann sich an nichts mehr erinnern.",
+    "level": "B2"
+  },
+  {
+    "verb": "erkennen",
+    "correct": "an",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "узнавать по (чему‑то)",
+      "en": "to recognize by",
+      "ua": "упізнавати за"
+    },
+    "example": "Timo erkennst du an den roten Haaren.",
+    "level": "B2"
+  },
+  {
+    "verb": "erkranken",
+    "correct": "an",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "заболеть чем‑то",
+      "en": "to fall ill with",
+      "ua": "захворіти на"
+    },
+    "example": "Die Nachbarin ist an Krebs erkrankt.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich erkundigen",
+    "correct": "nach",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "осведомляться о, интересоваться",
+      "en": "to inquire about",
+      "ua": "поцікавитися, довідуватися про"
+    },
+    "example": "Florian hat sich nach dir erkundigt.",
+    "level": "B2"
+  },
+  {
+    "verb": "erschrecken",
+    "correct": "vor",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "пугаться чего‑то",
+      "en": "to be frightened of",
+      "ua": "лякатися чогось"
+    },
+    "example": "Er erschrak vor dem Gespenst.",
+    "level": "B2"
+  },
+  {
+    "verb": "erzählen",
+    "correct": "von",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "рассказывать о",
+      "en": "to tell about",
+      "ua": "розповідати про"
+    },
+    "example": "Wir haben ihr von dem Haus erzählt.",
+    "level": "B2"
+  },
+  {
+    "verb": "experimentieren",
+    "correct": "mit",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "экспериментировать с",
+      "en": "to experiment with",
+      "ua": "експериментувати з"
+    },
+    "example": "Der Maler experimentiert mit neuen Farben.",
+    "level": "B2"
+  },
+  {
+    "verb": "fehlen",
+    "correct": "an",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "не хватать чего‑то",
+      "en": "to lack",
+      "ua": "бракувати чогось"
+    },
+    "example": "Den Kindern fehlt es an nichts.",
+    "level": "B2"
+  },
+  {
+    "verb": "fragen",
+    "correct": "nach",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "спрашивать о, наводить справки о",
+      "en": "to ask about",
+      "ua": "запитувати про"
+    },
+    "example": "Die Nachbarin hat nach dir gefragt.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich freuen",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "радоваться (чему‑то в будущем)",
+      "en": "to look forward to",
+      "ua": "радіти (чомусь у майбутньому)"
+    },
+    "example": "Wir freuen uns alle auf den Urlaub.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich freuen",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "радоваться (тому, что уже есть)",
+      "en": "to be glad about",
+      "ua": "радіти з приводу"
+    },
+    "example": "Sie freuen sich sehr über die Geschenke.",
+    "level": "B2"
+  },
+  {
+    "verb": "führen",
+    "correct": "zu",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "приводить к",
+      "en": "to lead to",
+      "ua": "призводити до"
+    },
+    "example": "Das führte zu einem heftigen Streit.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich fürchten",
+    "correct": "vor",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "бояться чего‑то",
+      "en": "to be afraid of",
+      "ua": "боятися чогось"
+    },
+    "example": "Elefanten fürchten sich vor Mäusen.",
+    "level": "B2"
+  },
+  {
+    "verb": "garantieren",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "гарантировать за, ручаться за",
+      "en": "to guarantee for",
+      "ua": "гарантувати за"
+    },
+    "example": "Unsere Firma garantiert für höchste Qualität.",
+    "level": "B2"
+  },
+  {
+    "verb": "gehen",
+    "correct": "um",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "речь идет о",
+      "en": "to be about",
+      "ua": "йтися про"
+    },
+    "example": "Es geht hier um Leben oder Tod.",
+    "level": "B2"
+  },
+  {
+    "verb": "gehören",
+    "correct": "zu",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "принадлежать к",
+      "en": "to belong to",
+      "ua": "належати до"
+    },
+    "example": "Anna gehört auch zu unserer Gruppe.",
+    "level": "B2"
+  },
+  {
+    "verb": "gelten",
+    "correct": "als",
+    "case": "Nominativ",
+    "probability": 7,
+    "translations": {
+      "ru": "считаться кем‑то, считаться как",
+      "en": "to be considered as",
+      "ua": "вважатися кимось / якимось"
+    },
+    "example": "In diesem Spiel gelten sie als Favoriten.",
+    "level": "B2"
+  },
+  {
+    "verb": "gelten",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "действовать для, относиться к",
+      "en": "to apply to",
+      "ua": "стосуватися, поширюватися на"
+    },
+    "example": "Das gilt auch für dich!",
+    "level": "B2"
+  },
+  {
+    "verb": "geraten",
+    "correct": "in",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "попасть в (ситуацию, состояние)",
+      "en": "to get into",
+      "ua": "потрапити в"
+    },
+    "example": "Die Forscher gerieten in einen Schneesturm.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich gewöhnen",
+    "correct": "an",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "привыкать к",
+      "en": "to get used to",
+      "ua": "звикати до"
+    },
+    "example": "Wir haben uns an das neue Auto bereits gewöhnt.",
+    "level": "B2"
+  },
+  {
+    "verb": "glauben",
+    "correct": "an",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "верить в",
+      "en": "to believe in",
+      "ua": "вірити в"
+    },
+    "example": "Wir glauben nicht an Geister.",
+    "level": "B2"
+  },
+  {
+    "verb": "halten",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "считать кем‑то/чем‑то",
+      "en": "to consider as",
+      "ua": "вважати за"
+    },
+    "example": "Ich halte dich für sehr intelligent.",
+    "level": "B2"
+  },
+  {
+    "verb": "halten",
+    "correct": "von",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "думать о (иметь мнение о)",
+      "en": "to think of, to have an opinion about",
+      "ua": "думати про, мати думку щодо"
+    },
+    "example": "Was hältst du von der neuen Lehrerin?",
+    "level": "B2"
+  },
+  {
+    "verb": "sich halten",
+    "correct": "an",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "придерживаться (правил и т. п.)",
+      "en": "to stick to, to adhere to",
+      "ua": "дотримуватися"
+    },
+    "example": "Wir müssen uns an Regeln halten.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich handeln",
+    "correct": "um",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "речь идет о, речь заключается в",
+      "en": "to be about, to concern",
+      "ua": "йтися про"
+    },
+    "example": "Es handelt sich um eine schwierige Situation.",
+    "level": "B2"
+  },
+  {
+    "verb": "hinweisen",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "указывать на",
+      "en": "to point to, to refer to",
+      "ua": "вказувати на"
+    },
+    "example": "Er möchte auf das Verbot hinweisen.",
+    "level": "B2"
+  },
+  {
+    "verb": "hoffen",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "надеяться на",
+      "en": "to hope for",
+      "ua": "сподіватися на"
+    },
+    "example": "Sie hoffen auf eine Lösung.",
+    "level": "B2"
+  },
+  {
+    "verb": "informieren",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "информировать о",
+      "en": "to inform about",
+      "ua": "інформувати про"
+    },
+    "example": "Man muss sich über das Gesetz informieren.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich interessieren",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "интересоваться",
+      "en": "to be interested in",
+      "ua": "цікавитися"
+    },
+    "example": "Rebecca interessiert sich für Pferde.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich irren",
+    "correct": "in",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "ошибаться в",
+      "en": "to be wrong about",
+      "ua": "помилятися в"
+    },
+    "example": "In diesem Punkt irrst du dich gewaltig.",
+    "level": "B2"
+  },
+  {
+    "verb": "kämpfen",
+    "correct": "gegen",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "бороться против",
+      "en": "to fight against",
+      "ua": "боротися проти"
+    },
+    "example": "Die Soldaten kämpfen gegen die Feinde.",
+    "level": "B2"
+  },
+  {
+    "verb": "kämpfen",
+    "correct": "mit",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "бороться с, мати труднощі з",
+      "en": "to struggle with, to fight with",
+      "ua": "боротися з"
+    },
+    "example": "Sie hat mit der Situation zu kämpfen.",
+    "level": "B2"
+  },
+  {
+    "verb": "kämpfen",
+    "correct": "um",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "бороться за",
+      "en": "to fight for",
+      "ua": "боротися за"
+    },
+    "example": "Er kämpft um ihre Liebe.",
+    "level": "B2"
+  },
+  {
+    "verb": "klagen",
+    "correct": "gegen",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "подавать в суд на, предъявлять иск против",
+      "en": "to sue, to file a complaint against",
+      "ua": "подавати до суду проти"
+    },
+    "example": "Wir werden gegen die Nachbarn klagen.",
+    "level": "B2"
+  },
+  {
+    "verb": "klagen",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "жаловаться на (боли, проблемы)",
+      "en": "to complain about",
+      "ua": "скаржитися на"
+    },
+    "example": "Tina klagt über große Schmerzen.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich konzentrieren",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "концентрироваться на",
+      "en": "to concentrate on",
+      "ua": "зосереджуватися на"
+    },
+    "example": "Ich muss mich jetzt auf die Sache konzentrieren.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich kümmern",
+    "correct": "um",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "заботиться о",
+      "en": "to take care of",
+      "ua": "піклуватися про"
+    },
+    "example": "Das Tierheim kümmert sich um viele Tiere.",
+    "level": "B2"
+  },
+  {
+    "verb": "lachen",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "смеяться над",
+      "en": "to laugh about / at",
+      "ua": "сміятися з / над"
+    },
+    "example": "Über so viel Dummheit kann man nur lachen!",
+    "level": "B2"
+  },
+  {
+    "verb": "leiden",
+    "correct": "an",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "страдать (от болезни)",
+      "en": "to suffer from (illness)",
+      "ua": "страждати на (хворобу)"
+    },
+    "example": "Sie leidet an einer Grippe.",
+    "level": "B2"
+  },
+  {
+    "verb": "leiden",
+    "correct": "unter",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "страдать от (обстоятельств)",
+      "en": "to suffer from (conditions)",
+      "ua": "страждати від (обставин)"
+    },
+    "example": "Er leidet unter dem Tod seiner Ehefrau.",
+    "level": "B2"
+  },
+  {
+    "verb": "liegen",
+    "correct": "an",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "зависеть от, быть причиной в",
+      "en": "to be due to",
+      "ua": "бути зумовленим, залежати від"
+    },
+    "example": "Das liegt ganz allein an dir!",
+    "level": "B2"
+  },
+  {
+    "verb": "nachdenken",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "размышлять о",
+      "en": "to think about, to ponder",
+      "ua": "розмірковувати про"
+    },
+    "example": "Paul denkt über eine Trennung nach.",
+    "level": "B2"
+  },
+  {
+    "verb": "neigen",
+    "correct": "zu",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "склоняться к, иметь склонность к",
+      "en": "to tend to",
+      "ua": "мати схильність до"
+    },
+    "example": "Er neigt zu Traurigkeit.",
+    "level": "B2"
+  },
+  {
+    "verb": "passen",
+    "correct": "zu",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "подходить к, идти к (об одежде и т. п.)",
+      "en": "to suit, to match",
+      "ua": "пасувати до"
+    },
+    "example": "Die Hose passt gut zu deinem Pullover.",
+    "level": "B2"
+  },
+  {
+    "verb": "protestieren",
+    "correct": "gegen",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "протестовать против",
+      "en": "to protest against",
+      "ua": "протестувати проти"
+    },
+    "example": "Die Arbeiter protestieren gegen die Entlassungen.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich rächen",
+    "correct": "an",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "мстить кому‑то",
+      "en": "to take revenge on",
+      "ua": "мститися комусь"
+    },
+    "example": "Sie werden sich an den Politikern rächen.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich rächen",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "мстить за что‑то",
+      "en": "to take revenge for",
+      "ua": "мститися за щось"
+    },
+    "example": "Sie will sich für die schlechte Note rächen.",
+    "level": "B2"
+  },
+  {
+    "verb": "raten",
+    "correct": "zu",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "советовать, рекомендовать",
+      "en": "to advise to",
+      "ua": "радити, радити зробити"
+    },
+    "example": "Ich rate dir zu einer neuen Wohnung.",
+    "level": "B2"
+  },
+  {
+    "verb": "rechnen",
+    "correct": "mit",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "рассчитывать на, ожидать",
+      "en": "to count on, to expect",
+      "ua": "розраховувати на, очікувати"
+    },
+    "example": "Wir rechnen fest mit dir!",
+    "level": "B2"
+  },
+  {
+    "verb": "reden",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "говорить о",
+      "en": "to talk about",
+      "ua": "говорити про"
+    },
+    "example": "Sie reden alle über das Unglück.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich richten",
+    "correct": "nach",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "руководствоваться, ориентироваться на",
+      "en": "to go by, to follow",
+      "ua": "орієнтуватися на"
+    },
+    "example": "Die Meinungen richten sich nach den Medien.",
+    "level": "B2"
+  },
+  {
+    "verb": "riechen",
+    "correct": "nach",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "пахнуть чем‑то",
+      "en": "to smell of",
+      "ua": "пахнути чимось"
+    },
+    "example": "Susi riecht immer nach Rosen.",
+    "level": "B2"
+  },
+  {
+    "verb": "schmecken",
+    "correct": "nach",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "иметь вкус чего‑то",
+      "en": "to taste of",
+      "ua": "мати смак чогось"
+    },
+    "example": "Das schmeckt nach Schokolade.",
+    "level": "B2"
+  },
+  {
+    "verb": "schreiben",
+    "correct": "an",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "писать кому‑то / над чем‑то",
+      "en": "to write to / to work on (a text)",
+      "ua": "писати комусь / над чимось"
+    },
+    "example": "Ich schreibe einen Brief an sie.",
+    "level": "B2"
+  },
+  {
+    "verb": "schreiben",
+    "correct": "an",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "писать кому‑то / над чем‑то",
+      "en": "to write to / to work on (a text)",
+      "ua": "писати комусь / над чимось"
+    },
+    "example": "Der Autor schreibt an einem neuen Roman.",
+    "level": "B2"
+  },
+  {
+    "verb": "schreiben",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "писать о",
+      "en": "to write about",
+      "ua": "писати про"
+    },
+    "example": "Sie schreiben nur über das Abendprogramm.",
+    "level": "B2"
+  },
+  {
+    "verb": "schützen",
+    "correct": "vor",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "защищать от",
+      "en": "to protect from",
+      "ua": "захищати від"
+    },
+    "example": "Sonnencremes schützen vor Sonnenbrand.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich sehnen",
+    "correct": "nach",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "тосковать по, стремиться к",
+      "en": "to long for",
+      "ua": "тужити за, прагнути до"
+    },
+    "example": "Sie sehnt sich nach Ruhe.",
+    "level": "B2"
+  },
+  {
+    "verb": "sorgen",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "заботиться о, обеспечивать",
+      "en": "to care for, to provide for",
+      "ua": "піклуватися про, забезпечувати"
+    },
+    "example": "Die Mutter kann gut für ihre Kinder sorgen.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich sorgen",
+    "correct": "um",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "беспокоиться о",
+      "en": "to worry about",
+      "ua": "хвилюватися за"
+    },
+    "example": "Der Arzt sorgt sich um die Gesundheit.",
+    "level": "B2"
+  },
+  {
+    "verb": "sprechen",
+    "correct": "mit",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "говорить с",
+      "en": "to speak with",
+      "ua": "говорити з"
+    },
+    "example": "Wir müssen unbedingt mit ihr sprechen.",
+    "level": "B2"
+  },
+  {
+    "verb": "sprechen",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "говорить о",
+      "en": "to talk about",
+      "ua": "говорити про"
+    },
+    "example": "Alle sprechen über das Fest.",
+    "level": "B2"
+  },
+  {
+    "verb": "sprechen",
+    "correct": "von",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "говорить о, упоминать",
+      "en": "to speak of",
+      "ua": "говорити про"
+    },
+    "example": "Wir sprachen gerade von dir!",
+    "level": "B2"
+  },
+  {
+    "verb": "staunen",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "удивляться чему‑то",
+      "en": "to be astonished at",
+      "ua": "дивуватися чомусь"
+    },
+    "example": "Die Kinder staunen über den Eisbär.",
+    "level": "B2"
+  },
+  {
+    "verb": "sterben",
+    "correct": "an",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "умереть от (болезни)",
+      "en": "to die of (an illness)",
+      "ua": "померти від (хвороби)"
+    },
+    "example": "Viele Patienten sterben an dieser Krankheit.",
+    "level": "B2"
+  },
+  {
+    "verb": "sterben",
+    "correct": "für",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "умереть за",
+      "en": "to die for",
+      "ua": "померти за"
+    },
+    "example": "Die Soldaten mussten für ihr Land sterben.",
+    "level": "B2"
+  },
+  {
+    "verb": "streiten",
+    "correct": "um",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "спорить из‑за, ссориться из‑за",
+      "en": "to argue about, to fight over",
+      "ua": "сперечатися через"
+    },
+    "example": "Die Schüler streiten um den besten Platz.",
+    "level": "B2"
+  },
+  {
+    "verb": "teilnehmen",
+    "correct": "an",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "участвовать в",
+      "en": "to take part in",
+      "ua": "брати участь у"
+    },
+    "example": "Der Sportler nimmt an der Olympiade teil.",
+    "level": "B2"
+  },
+  {
+    "verb": "telefonieren",
+    "correct": "mit",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "разговаривать по телефону с",
+      "en": "to talk on the phone with",
+      "ua": "говорити по телефону з"
+    },
+    "example": "Anna telefoniert mit Paul.",
+    "level": "B2"
+  },
+  {
+    "verb": "träumen",
+    "correct": "von",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "мечтать о, видеть во сне",
+      "en": "to dream of",
+      "ua": "мріяти про, бачити уві сні"
+    },
+    "example": "Sie träumt von der großen Reise.",
+    "level": "B2"
+  },
+  {
+    "verb": "überreden",
+    "correct": "zu",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "уговаривать на",
+      "en": "to persuade to",
+      "ua": "вмовляти до"
+    },
+    "example": "Kann ich dich zu einem Ausflug überreden?",
+    "level": "B2"
+  },
+  {
+    "verb": "sich unterhalten",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "беседовать о",
+      "en": "to chat about, to talk about",
+      "ua": "спілкуватися про"
+    },
+    "example": "Die Frauen unterhalten sich über Rezepte.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich verabschieden",
+    "correct": "von",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "прощаться с",
+      "en": "to say goodbye to",
+      "ua": "прощатися з"
+    },
+    "example": "Wir verabschieden uns von Ihnen.",
+    "level": "B2"
+  },
+  {
+    "verb": "vergleichen",
+    "correct": "mit",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "сравнивать с",
+      "en": "to compare with",
+      "ua": "порівнювати з"
+    },
+    "example": "Das kann man vergleichen mit letztem Jahr.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich verlassen",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "полагаться на",
+      "en": "to rely on",
+      "ua": "покладатися на"
+    },
+    "example": "Sie kann sich immer auf ihren Mann verlassen.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich verlieben",
+    "correct": "in",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "влюбиться в",
+      "en": "to fall in love with",
+      "ua": "закохатися в"
+    },
+    "example": "Ich werde mich wieder verlieben.",
+    "level": "B2"
+  },
+  {
+    "verb": "verstoßen",
+    "correct": "gegen",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "нарушать (правила, закон)",
+      "en": "to violate, to infringe",
+      "ua": "порушувати"
+    },
+    "example": "Die Spieler verstoßen gegen die Regeln.",
+    "level": "B2"
+  },
+  {
+    "verb": "vertrauen",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "полагаться на, доверять",
+      "en": "to trust in, to rely on",
+      "ua": "довіряти, покладатися на"
+    },
+    "example": "Sie vertrauen auf ihr Glück.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich verwandeln",
+    "correct": "in",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "превращаться в",
+      "en": "to transform into",
+      "ua": "перетворюватися на"
+    },
+    "example": "Der Frosch verwandelt sich in einen Prinzen.",
+    "level": "B2"
+  },
+  {
+    "verb": "verzichten",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "отказываться от",
+      "en": "to do without, to give up",
+      "ua": "відмовлятися від"
+    },
+    "example": "Sie muss auf Alkohol verzichten.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich vorbereiten",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "готовиться к",
+      "en": "to prepare for",
+      "ua": "готуватися до"
+    },
+    "example": "Die Sänger bereiten sich auf den Auftritt vor.",
+    "level": "B2"
+  },
+  {
+    "verb": "warnen",
+    "correct": "vor",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "предупреждать о, предостерегать от",
+      "en": "to warn about / against",
+      "ua": "попереджати про / проти"
+    },
+    "example": "Die Polizei warnt vor Alkohol am Steuer.",
+    "level": "B2"
+  },
+  {
+    "verb": "warten",
+    "correct": "auf",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "ждать кого‑то / чего‑то",
+      "en": "to wait for",
+      "ua": "чекати на"
+    },
+    "example": "Die Kinder warten ungeduldig auf Weihnachten.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich wehren",
+    "correct": "gegen",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "защищаться от, сопротивляться",
+      "en": "to defend oneself against",
+      "ua": "захищатися від, опиратися"
+    },
+    "example": "Man muss sich gegen die Medien wehren.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich wenden",
+    "correct": "an",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "обращаться к",
+      "en": "to turn to, to contact",
+      "ua": "звертатися до"
+    },
+    "example": "Damit wenden sie sich jetzt an die Öffentlichkeit.",
+    "level": "B2"
+  },
+  {
+    "verb": "sich wundern",
+    "correct": "über",
+    "case": "Akkusativ",
+    "probability": 7,
+    "translations": {
+      "ru": "удивляться чему‑то",
+      "en": "to be surprised about",
+      "ua": "дивуватися чомусь"
+    },
+    "example": "Man kann sich nur über das Wetter wundern.",
+    "level": "B2"
+  },
+  {
+    "verb": "zweifeln",
+    "correct": "an",
+    "case": "Dativ",
+    "probability": 7,
+    "translations": {
+      "ru": "сомневаться в",
+      "en": "to doubt",
+      "ua": "сумніватися в"
+    },
+    "example": "Sie zweifelt an seiner Liebe.",
+    "level": "B2"
+  }
+]
