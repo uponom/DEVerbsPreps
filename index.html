@@ -53,7 +53,7 @@
       justify-content: flex-end;
       align-items: center;
       gap: 4px;
-      margin-bottom: 10px;
+      margin-bottom: 18px;
       flex-wrap: nowrap;
     }
 
@@ -70,6 +70,7 @@
 
     .lang-switcher button.active {
       background-color: var(--bg);
+      border: 2px solid #7a0000;
     }
 
     .level-filters {
@@ -87,7 +88,7 @@
 
     .level-filters button.active {
       background-color: var(--bg);
-      border-color: var(--button-border);
+      border: 2px solid #7a0000;
     }
 
 
@@ -197,13 +198,25 @@
       background-color: var(--progress-bg);
       border-radius: 10px;
       overflow: hidden;
+      display: flex;
     }
 
-    .progress-fill {
+    .progress-segment {
       height: 100%;
-      background-color: var(--progress-fill);
       width: 0%;
       transition: width 0.3s;
+    }
+
+    .progress-fill-green {
+      background-color: var(--progress-fill);
+    }
+
+    .progress-fill-yellow {
+      background-color: #f4c542;
+    }
+
+    .progress-fill-orange {
+      background-color: #f28c28;
     }
 
     .example-text {
@@ -325,7 +338,9 @@
   <div class="progress-container">
     <div class="progress-text" id="progressText"></div>
     <div class="progress-bar">
-      <div class="progress-fill" id="progressFill"></div>
+      <div class="progress-segment progress-fill-green" id="progressFillGreen"></div>
+      <div class="progress-segment progress-fill-yellow" id="progressFillYellow"></div>
+      <div class="progress-segment progress-fill-orange" id="progressFillOrange"></div>
     </div>
   </div>
   <div id="penaltyPoints" style="margin-top:5px; font-size:14px; color:var(--muted);">Strafpunkte: 0</div>
@@ -333,8 +348,7 @@
   <div id="appVersion" class="app-version"></div>
 
   <script>
-    // Data for verbs with prepositions
-    // Each verb has a probability weight for random selection
+    // Verb + preposition dataset with weighted repetition.
     const data = [
   {verb:  "achten", correct:  "auf", case:  "Akkusativ", probability:  7, translations:  {ru:  "обращать внимание на", en:  "to pay attention", ua:  "звертати увагу на"}, example:  "Achte auf die rote Ampel!", level:  "B1"},
   {verb:  "antworten", correct:  "auf", case:  "Akkusativ", probability:  7, translations:  {ru:  "отвечать на", en:  "to answer to", ua:  "відповідати на"}, example:  "Ich antworte auf deine Frage.", level:  "B1"},
@@ -544,7 +558,7 @@
     // Current theme name.
     let currentTheme = "light";
     // App version label shown in UI.
-    const APP_VERSION = "v8";
+    const APP_VERSION = "v9";
     // Speech toggle icons.
     const speechToggleIcons = { on: "🔊", off: "🔇" };
 
@@ -671,11 +685,11 @@
       document.getElementById("nextButton").style.display = "none";
       document.getElementById("nextButton").textContent = nextButtonText[currentLang];
 
-      // Заменяем все вхождения текущего предлога на троеточие, включая спецсимволы (ä, ü, ö, ß)
+      // Replace the current preposition with ellipses, including special chars (ä, ü, ö, ß).
       if (example && correct) {
-        // Экранируем спецсимволы для регулярного выражения
+        // Escape special characters for regex.
         const escaped = correct.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        // Добавляем проверку на пробел перед предлогом
+        // Ensure a preceding space before the preposition.
         const replaced = example.replace(new RegExp(`\\s${escaped}`, "gu"), " ...");
         document.getElementById("example").textContent = replaced;
         document.getElementById("exampleSpeakButton").style.display = "none";
@@ -698,6 +712,8 @@
         btn.onclick = () => handleAnswer(prep);
         container.appendChild(btn);
       });
+
+      updateProgress()
     }
 
     // Handle the user's answer selection.
@@ -714,7 +730,7 @@
         if (item.probability > 2) item.probability -= 2;
       } else {
         result.innerHTML = `${resultText[currentLang].wrong} <span class="correct-answer">${correct}</span>`;
-        if (item.probability < 39) item.probability += 4;
+        if (item.probability < 39) item.probability += 2;
       }
 
       const answerCaseClass = getCaseClass(item.case);
@@ -727,7 +743,7 @@
         speakButton.onclick = () => speakGermanForce(`${item.verb} ${item.correct}`);
       }
       document.getElementById("nextButton").style.display = "inline-block";
-      // Добавлено: вывод примера
+      // Show the example after answering.
       document.getElementById("example").textContent = item.example ? item.example : "";
       const exampleButton = document.getElementById("exampleSpeakButton");
       if (item.example) {
@@ -745,12 +761,22 @@
         const activeData = getActiveData();
         const total = activeData.length;
         const mastered = activeData.filter(item => item.probability === 1).length;
-        const percent = Math.floor((mastered / total) * 100);
+        const progressRatio = total ? (mastered / total) : 0;
+        const percent = Math.round(progressRatio * 100);
         document.getElementById("progressText").textContent = `📊 Progress: ${percent}%`;
-        document.getElementById("progressFill").style.width = `${percent}%`;
+        const totalAll = data.length || 1;
+        const greenCount = data.filter(item => item.probability < 2).length;
+        const yellowCount = data.filter(item => item.probability >= 2 && item.probability < 4).length;
+        const orangeCount = data.filter(item => item.probability >= 4 && item.probability < 6).length;
+        const greenRatio = greenCount / totalAll;
+        const yellowRatio = yellowCount / totalAll;
+        const orangeRatio = orangeCount / totalAll;
+        document.getElementById("progressFillGreen").style.width = `${(greenRatio * 100).toFixed(2)}%`;
+        document.getElementById("progressFillYellow").style.width = `${(yellowRatio * 100).toFixed(2)}%`;
+        document.getElementById("progressFillOrange").style.width = `${(orangeRatio * 100).toFixed(2)}%`;
 
         const totalPenalty = activeData.reduce((sum, item) => sum + (item.probability - 1), 0);
-        const currentPenalty = currentItem ? currentItem.probability - 1 : 0;
+        const currentPenalty = currentItem ? currentItem.probability : 0; // probability-1
         const currentVerb = currentItem ? currentItem.verb : "";
 
         document.getElementById("penaltyPoints").textContent =
@@ -826,6 +852,8 @@
       const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
       setTheme(prefersDark ? "dark" : "light");
     }
+
+    // === Main part ===
 
     if ('serviceWorker' in navigator) {
       let refreshing = false;
