@@ -637,7 +637,7 @@
     // Current theme name.
     let currentTheme = "light";
     // App version label shown in UI.
-    const APP_VERSION = "v12";
+    const APP_VERSION = "v13";
     // Speech toggle icons.
     const speechToggleIcons = { on: "🔊", off: "🔇" };
     const shareButtonText = { ru: "Поделиться", en: "Share", ua: "Поділитися" };
@@ -924,7 +924,8 @@
     function getShareOrigin() {
       const origin = window.location.origin;
       if (!origin || origin === "null") return window.location.href;
-      return origin;
+      const baseUrl = new URL(".", window.location.href).href;
+      return baseUrl;
     }
 
     function openShareModal() {

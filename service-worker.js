@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v12';
+const CACHE_VERSION = 'v13';
 const CACHE_NAME = `DEVerbsPreps-cache-${CACHE_VERSION}`;
 const urlsToCache = [
   '/DEVerbsPreps/', // Important if your page is available at the root URL
