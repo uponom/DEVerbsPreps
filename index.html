@@ -272,6 +272,25 @@
       max-width: 90%;
     }
 
+    .restart-button {
+      margin-top: 20px;
+      font-size: 20px;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .example-speak-button.is-hidden {
+      display: none;
+    }
+
+    .penalty-points {
+      margin-top: 5px;
+      font-size: 11px;
+      color: var(--muted);
+      font-style: normal;
+      font-weight: normal;
+    }
+
     .app-version {
       margin-top: 12px;
       font-size: 12px;
@@ -317,7 +336,7 @@
     <div id="congratsModal" class="modal-overlay">
     <div class="modal-content">
         <h2>🎉 Glückwunsch! Du hast den Test abgeschlossen!</h2>
-        <button onclick="restartTest()" style="margin-top:20px; font-size:20px; padding:10px 20px; border-radius:8px;">🔁 Test erneut starten</button>
+        <button class="restart-button" onclick="restartTest()">🔁 Test erneut starten</button>
     </div>
     </div>
 
@@ -338,7 +357,7 @@
 
   <div class="example-row">
     <div id="example" class="example-text"></div>
-    <button id="exampleSpeakButton" class="example-speak-button" type="button" aria-label="Speak example" style="display:none;">🔊</button>
+    <button id="exampleSpeakButton" class="example-speak-button is-hidden" type="button" aria-label="Speak example">🔊</button>
   </div>
 
   <div class="progress-container">
@@ -349,7 +368,7 @@
       <div class="progress-segment progress-fill-orange" id="progressFillOrange"></div>
     </div>
   </div>
-  <div id="penaltyPoints" style="margin-top:5px; font-size:14px; color:var(--muted);">Strafpunkte: 0</div>
+  <div id="penaltyPoints" class="penalty-points">Strafpunkte: 0</div>
 
   <div id="appVersion" class="app-version"></div>
 
@@ -564,7 +583,7 @@
     // Current theme name.
     let currentTheme = "light";
     // App version label shown in UI.
-    const APP_VERSION = "v10";
+    const APP_VERSION = "v11";
     // Speech toggle icons.
     const speechToggleIcons = { on: "🔊", off: "🔇" };
 
@@ -704,10 +723,10 @@
         // Ensure a preceding space before the preposition.
         const replaced = example.replace(new RegExp(`\\s${escaped}`, "gu"), " ...");
         document.getElementById("example").textContent = replaced;
-        document.getElementById("exampleSpeakButton").style.display = "none";
+        document.getElementById("exampleSpeakButton").classList.add("is-hidden");
       } else {
         document.getElementById("example").textContent = "";
-        document.getElementById("exampleSpeakButton").style.display = "none";
+        document.getElementById("exampleSpeakButton").classList.add("is-hidden");
       }
 
       const container = document.getElementById("options");
@@ -762,10 +781,10 @@
       document.getElementById("example").textContent = item.example ? item.example : "";
       const exampleButton = document.getElementById("exampleSpeakButton");
       if (item.example) {
-        exampleButton.style.display = "inline-block";
+        exampleButton.classList.remove("is-hidden");
         exampleButton.onclick = () => speakGermanForce(item.example);
       } else {
-        exampleButton.style.display = "none";
+        exampleButton.classList.add("is-hidden");
       }
       speakGerman(`${item.verb} ${item.correct}`);
       updateProgress();
@@ -790,12 +809,14 @@
         document.getElementById("progressFillYellow").style.width = `${(yellowRatio * 100).toFixed(2)}%`;
         document.getElementById("progressFillOrange").style.width = `${(orangeRatio * 100).toFixed(2)}%`;
 
-        const totalPenalty = activeData.reduce((sum, item) => sum + (item.probability - 1), 0);
-        const currentPenalty = currentItem ? currentItem.probability : 0; // probability-1
+        const totalPenaltyRaw = activeData.reduce((sum, item) => sum + item.probability, 0);
+        const currentPenaltyRaw = currentItem ? currentItem.probability : 0;
+        const totalPenalty = Math.floor(totalPenaltyRaw / 2);
+        const currentPenalty = Math.floor(currentPenaltyRaw / 2);
         const currentVerb = currentItem ? currentItem.verb : "";
 
         document.getElementById("penaltyPoints").textContent =
-            `${currentVerb} >>> Strafpunkte: ${currentPenalty} / Total Strafpunkte: ${totalPenalty}`;
+            `${currentVerb} → Strafpunkte: ${currentPenalty} / Total Strafpunkte: ${totalPenalty}`;
 
         if (percent === 100) {
             document.getElementById("congratsModal").style.display = "flex";
