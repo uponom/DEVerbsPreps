@@ -264,8 +264,8 @@
     }
 
     .modal-content {
-      background: var(--card-bg);
-      color: var(--text);
+      background: #ffffff;
+      color: #111111;
       padding: 30px;
       border-radius: 12px;
       text-align: center;
@@ -292,10 +292,52 @@
     }
 
     .app-version {
-      margin-top: 12px;
       font-size: 12px;
       color: var(--muted);
       text-align: right;
+    }
+
+    .app-version-row {
+      margin-top: 12px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .share-button {
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: 1px solid var(--button-border);
+      cursor: pointer;
+    }
+
+    .share-title {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .share-qr {
+      width: 200px;
+      height: 200px;
+      display: inline-block;
+    }
+
+    .share-qr canvas,
+    .share-qr img {
+      width: 200px;
+      height: 200px;
+      display: block;
+    }
+
+    .share-origin {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      word-break: break-all;
     }
 
     @media (max-width: 600px) {
@@ -370,8 +412,20 @@
   </div>
   <div id="penaltyPoints" class="penalty-points">Strafpunkte: 0</div>
 
-  <div id="appVersion" class="app-version"></div>
+  <div class="app-version-row">
+    <div id="appVersion" class="app-version"></div>
+    <button id="shareButton" class="share-button" type="button"></button>
+  </div>
 
+  <div id="shareModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content">
+      <div id="shareTitle" class="share-title"></div>
+      <div id="shareQr" class="share-qr" aria-label="QR code"></div>
+      <div id="shareOrigin" class="share-origin"></div>
+    </div>
+  </div>
+
+  <script src="qrcode.min.js"></script>
   <script>
     // Verb + preposition dataset with weighted repetition.
     const data = [
@@ -583,15 +637,18 @@
     // Current theme name.
     let currentTheme = "light";
     // App version label shown in UI.
-    const APP_VERSION = "v11";
+    const APP_VERSION = "v12";
     // Speech toggle icons.
     const speechToggleIcons = { on: "🔊", off: "🔇" };
+    const shareButtonText = { ru: "Поделиться", en: "Share", ua: "Поділитися" };
+    const shareTitleText = "Deutsche Verben mit Präposition";
 
     // Switch UI language and refresh the question.
     function setLanguage(lang) {
       currentLang = lang;
       newQuestion();
       updateLanguageButtons();
+      updateShareLabels();
       updateThemeButton();
     }
 
@@ -605,6 +662,13 @@
         const isActive = match && match[1] === currentLang;
         btn.classList.toggle("active", Boolean(isActive));
       });
+    }
+
+    function updateShareLabels() {
+      const button = document.getElementById("shareButton");
+      const title = document.getElementById("shareTitle");
+      if (button) button.textContent = shareButtonText[currentLang] || shareButtonText.en;
+      if (title) title.textContent = shareTitleText;
     }
 
     // Map grammatical case to badge class.
@@ -857,6 +921,46 @@
       });
     }
 
+    function getShareOrigin() {
+      const origin = window.location.origin;
+      if (!origin || origin === "null") return window.location.href;
+      return origin;
+    }
+
+    function openShareModal() {
+      const modal = document.getElementById("shareModal");
+      const qr = document.getElementById("shareQr");
+      const originEl = document.getElementById("shareOrigin");
+      const origin = getShareOrigin();
+      if (qr) {
+        qr.innerHTML = "";
+        if (typeof QRCode === "function") {
+          try {
+            new QRCode(qr, {
+              text: origin,
+              width: 200,
+              height: 200,
+              colorDark: "#111111",
+              colorLight: "#ffffff",
+              correctLevel: QRCode.CorrectLevel.M
+            });
+          } catch (error) {
+            qr.textContent = "QR unavailable";
+          }
+        } else {
+          qr.textContent = "QR unavailable";
+        }
+      }
+      if (originEl) originEl.textContent = origin;
+      if (modal) modal.style.display = "flex";
+    }
+
+    function closeShareModal() {
+      const modal = document.getElementById("shareModal");
+      if (modal) modal.style.display = "none";
+    }
+
+
     // Refresh theme toggle icon.
     function updateThemeButton() {
       const button = document.getElementById("themeToggle");
@@ -925,12 +1029,15 @@
     initTheme();
     updateSpeechButton();
     updateLanguageButtons();
+    updateShareLabels();
     renderLevelFilters();
     if ('speechSynthesis' in window) {
       pickGermanVoice();
       window.speechSynthesis.addEventListener('voiceschanged', pickGermanVoice);
     }
     document.getElementById("appVersion").textContent = `${APP_VERSION}`;
+    document.getElementById("shareButton").onclick = openShareModal;
+    document.getElementById("shareModal").onclick = closeShareModal;
     newQuestion();
     updateProgress();
 

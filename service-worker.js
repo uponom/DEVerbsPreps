@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v11';
+const CACHE_VERSION = 'v12';
 const CACHE_NAME = `DEVerbsPreps-cache-${CACHE_VERSION}`;
 const urlsToCache = [
   '/DEVerbsPreps/', // Important if your page is available at the root URL
@@ -9,6 +9,7 @@ const urlsToCache = [
   // For example, '/icons/icon-192x192.png', '/icons/icon-512x512.png'
   '/DEVerbsPreps/icon-192x192.png', // Icon
   '/DEVerbsPreps/icon-512x512.png', // Icon
+  '/DEVerbsPreps/qrcode.min.js', // Local QR code library
   '/DEVerbsPreps/android-chrome-192x192.png', // Android icon
   '/DEVerbsPreps/android-chrome-512x512.png', // Android icon
   '/DEVerbsPreps/favicon.ico', // Favicon

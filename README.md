@@ -31,10 +31,13 @@ Then open `http://localhost:8000/DEVerbsPreps/`.
   - `APP_VERSION` in `index.html`.
   - `CACHE_VERSION` in `service-worker.js`.
 - Speech synthesis works on secure contexts (HTTPS) or localhost.
+- QR code generation uses a local `qrcode.min.js` file (no network calls).
+  - SHA-256: `c541ef06327885a8415bca8df6071e14189b4855336def4f36db54bde8484f36`
 
 ## Project structure
 - `index.html` - UI, styles, and app logic.
 - `service-worker.js` - offline cache and update flow.
+- `qrcode.min.js` - local QR code generator.
 - `manifest.json` and `site.webmanifest` - PWA metadata.
 - `icon-*.png`, `favicon*.png`, `apple-touch-icon.png` - app icons.
 - `screenshot-*.png` - store listing screenshots.
