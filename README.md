@@ -1,4 +1,4 @@
-# DEVerbsPreps
+# DEVerbsPreps - Deutsche Verben mit Präposition
 Interactive trainer for German verbs with prepositions. The app shows a verb, offers preposition choices, and reinforces learning with weighted repetition, examples, and progress tracking.
 
 ## Features
