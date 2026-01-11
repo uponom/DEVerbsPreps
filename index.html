@@ -99,6 +99,12 @@
       margin-bottom: 5px;
     }
 
+    .translation.blurred {
+      filter: blur(6px);
+      user-select: none;
+      cursor: pointer;
+    }
+
     .verb-display {
       font-size: 24px;
       margin: 10px 0 15px;
@@ -558,7 +564,7 @@
     // Current theme name.
     let currentTheme = "light";
     // App version label shown in UI.
-    const APP_VERSION = "v9";
+    const APP_VERSION = "v10";
     // Speech toggle icons.
     const speechToggleIcons = { on: "🔊", off: "🔇" };
 
@@ -677,9 +683,15 @@
 
       currentItem = item;
       currentCorrect = correct;
-      document.getElementById("translation").innerHTML = `${translations[currentLang]} <span style="color:var(--muted); font-size:16px;">(${grammarCase})</span>`;
+      const translationEl = document.getElementById("translation");
+      translationEl.textContent = item.probability < 4 ? "" : translations[currentLang];
+      translationEl.classList.toggle("blurred", item.probability >= 4 && item.probability < 6);
+      translationEl.onclick = () => {
+        if (translationEl.classList.contains("blurred")) {
+          translationEl.classList.remove("blurred");
+        }
+      };
       const caseClass = getCaseClass(grammarCase);
-      document.getElementById("translation").textContent = translations[currentLang];
       document.getElementById("verb").innerHTML = `${formatVerb(verb)} <span class="case-badge ${caseClass}">${grammarCase}</span>`;
       document.getElementById("result").textContent = "";
       document.getElementById("nextButton").style.display = "none";
@@ -724,6 +736,9 @@
       const correct = currentCorrect;
       const item = currentItem;
       if (!item) return;
+      const translationEl = document.getElementById("translation");
+      translationEl.textContent = item.translations[currentLang];
+      translationEl.classList.remove("blurred");
 
       if (selected === correct) {
         result.textContent = resultText[currentLang].correct;
