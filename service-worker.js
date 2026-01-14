@@ -1,21 +1,16 @@
-const CACHE_VERSION = 'v13';
+const CACHE_VERSION = 'v16';
 const CACHE_NAME = `DEVerbsPreps-cache-${CACHE_VERSION}`;
 const urlsToCache = [
-  '/DEVerbsPreps/', // Important if your page is available at the root URL
-  '/DEVerbsPreps/index.html',
+  'index.html',
   // '/style.css', // If you have a CSS file
   // '/script.js', // If you have a JS file
   // Add any other resources you want to cache
   // For example, '/icons/icon-192x192.png', '/icons/icon-512x512.png'
-  '/DEVerbsPreps/icon-192x192.png', // Icon
-  '/DEVerbsPreps/icon-512x512.png', // Icon
-  '/DEVerbsPreps/qrcode.min.js', // Local QR code library
-  '/DEVerbsPreps/android-chrome-192x192.png', // Android icon
-  '/DEVerbsPreps/android-chrome-512x512.png', // Android icon
-  '/DEVerbsPreps/favicon.ico', // Favicon
-  '/DEVerbsPreps/apple-touch-icon.png', // iOS icon
-  '/DEVerbsPreps/favicon-16x16.png', // Favicon 16x16
-  '/DEVerbsPreps/favicon-32x32.png' // Favicon 32x32
+  'qrcode.min.js', // Local QR code library
+  'manifest.json', // Web app manifest
+  'icon-192x192.png', // PWA icon
+  'icon-512x512.png', // PWA icon
+  'favicon.ico' // Favicon
 ];
 
 self.addEventListener('install', (event) => {

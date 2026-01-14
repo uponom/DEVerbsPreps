@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="manifest" href="/DEVerbsPreps/manifest.json">
-  <link rel="icon" type="image/png" href="/DEVerbsPreps/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="favicon.ico">
   <title>Deutsch Verben mit Präpositionen</title>
   <style>
     :root {
@@ -637,7 +637,7 @@
     // Current theme name.
     let currentTheme = "light";
     // App version label shown in UI.
-    const APP_VERSION = "v13";
+    const APP_VERSION = "v16";
     // Speech toggle icons.
     const speechToggleIcons = { on: "🔊", off: "🔇" };
     const shareButtonText = { ru: "Поделиться", en: "Share", ua: "Поділитися" };
@@ -1005,7 +1005,7 @@
       });
 
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/DEVerbsPreps/service-worker.js', { scope: '/DEVerbsPreps/' })
+        navigator.serviceWorker.register('service-worker.js')
           .then(registration => {
             console.log('Service Worker registered with scope:', registration.scope);
             if (registration.waiting) {
