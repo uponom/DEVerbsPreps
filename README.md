@@ -9,6 +9,7 @@ Interactive trainer for German verbs with prepositions. The app shows a verb, of
 - Example sentences with optional speech playback.
 - Light/dark theme toggle.
 - PWA support with offline caching.
+- Verb list modal with translations for the current UI language.
 
 ## Quick start
 This is a static app with no build step. Choose the simplest option that fits your use case.

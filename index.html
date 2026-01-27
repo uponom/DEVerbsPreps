@@ -48,13 +48,31 @@
       color: var(--text);
     }
 
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
     .lang-switcher {
       display: flex;
       justify-content: flex-end;
       align-items: center;
       gap: 4px;
-      margin-bottom: 18px;
+      margin-bottom: 0;
       flex-wrap: nowrap;
+    }
+
+    .verb-list-button {
+      width: 36px;
+      height: 32px;
+      padding: 0;
+      margin: 0;
+      font-size: 18px;
+      line-height: 1;
+      border-radius: 10px;
     }
 
     .lang-switcher button {
@@ -272,6 +290,42 @@
       max-width: 90%;
     }
 
+    .modal-list-content {
+      max-width: 640px;
+      width: 90%;
+      max-height: 80vh;
+      overflow: hidden;
+      text-align: left;
+      background: var(--card-bg);
+      color: var(--text);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-close {
+      font-size: 18px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: 1px solid var(--button-border);
+      cursor: pointer;
+    }
+
+    .verb-list {
+      margin: 16px 0 0;
+      padding-left: 22px;
+      max-height: 60vh;
+      overflow-y: auto;
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
     .restart-button {
       margin-top: 20px;
       font-size: 20px;
@@ -364,6 +418,11 @@
         height: 28px;
         font-size: 12px;
       }
+      .verb-list-button {
+        width: 34px;
+        height: 28px;
+        font-size: 16px;
+      }
       #result {
         font-size: 26px;
       }
@@ -382,13 +441,16 @@
     </div>
     </div>
 
-  <div class="lang-switcher">
-    <button onclick="setLanguage('en')">EN</button>
-    <button onclick="setLanguage('ua')">UA</button>
-    <button onclick="setLanguage('ru')">RU</button>
-    <button id="speechToggle" type="button" onclick="toggleSpeech()"></button>
-    <button id="themeToggle" class="theme-toggle" type="button" onclick="toggleTheme()"></button>
-    <div id="levelFilters" class="level-filters" aria-label="Level filters"></div>
+  <div class="top-bar">
+    <button id="verbListButton" class="verb-list-button" type="button" aria-label="Verb list">📚</button>
+    <div class="lang-switcher">
+      <button onclick="setLanguage('en')">EN</button>
+      <button onclick="setLanguage('ua')">UA</button>
+      <button onclick="setLanguage('ru')">RU</button>
+      <button id="speechToggle" type="button" onclick="toggleSpeech()"></button>
+      <button id="themeToggle" class="theme-toggle" type="button" onclick="toggleTheme()"></button>
+      <div id="levelFilters" class="level-filters" aria-label="Level filters"></div>
+    </div>
   </div>
 
   <div class="translation" id="translation"></div>
@@ -422,6 +484,16 @@
       <div id="shareTitle" class="share-title"></div>
       <div id="shareQr" class="share-qr" aria-label="QR code"></div>
       <div id="shareOrigin" class="share-origin"></div>
+    </div>
+  </div>
+
+  <div id="verbListModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content modal-list-content" role="dialog" aria-modal="true" aria-labelledby="verbListTitle">
+      <div class="modal-header">
+        <h2 id="verbListTitle"></h2>
+        <button id="verbListClose" class="modal-close" type="button" aria-label="Close">✖</button>
+      </div>
+      <ul id="verbList" class="verb-list"></ul>
     </div>
   </div>
 
@@ -637,11 +709,26 @@
     // Current theme name.
     let currentTheme = "light";
     // App version label shown in UI.
-    const APP_VERSION = "v16";
+    const APP_VERSION = "v17";
     // Speech toggle icons.
     const speechToggleIcons = { on: "🔊", off: "🔇" };
     const shareButtonText = { ru: "Поделиться", en: "Share", ua: "Поділитися" };
     const shareTitleText = "Deutsche Verben mit Präposition";
+    const verbListTitleText = {
+      ru: "Все глаголы с предлогами",
+      en: "All verb-preposition pairs",
+      ua: "Усі дієслова з прийменниками"
+    };
+    const verbListButtonLabel = {
+      ru: "Список глаголов с предлогами",
+      en: "List of verb-preposition pairs",
+      ua: "Список дієслів з прийменниками"
+    };
+    const verbListCloseLabel = {
+      ru: "Закрыть список",
+      en: "Close list",
+      ua: "Закрити список"
+    };
 
     // Switch UI language and refresh the question.
     function setLanguage(lang) {
@@ -649,7 +736,12 @@
       newQuestion();
       updateLanguageButtons();
       updateShareLabels();
+      updateVerbListLabels();
       updateThemeButton();
+      const listModal = document.getElementById("verbListModal");
+      if (listModal && listModal.style.display === "flex") {
+        renderVerbList();
+      }
     }
 
     // Update active language button styling.
@@ -669,6 +761,15 @@
       const title = document.getElementById("shareTitle");
       if (button) button.textContent = shareButtonText[currentLang] || shareButtonText.en;
       if (title) title.textContent = shareTitleText;
+    }
+
+    function updateVerbListLabels() {
+      const button = document.getElementById("verbListButton");
+      const title = document.getElementById("verbListTitle");
+      const closeButton = document.getElementById("verbListClose");
+      if (button) button.setAttribute("aria-label", verbListButtonLabel[currentLang] || verbListButtonLabel.en);
+      if (title) title.textContent = verbListTitleText[currentLang] || verbListTitleText.en;
+      if (closeButton) closeButton.setAttribute("aria-label", verbListCloseLabel[currentLang] || verbListCloseLabel.en);
     }
 
     // Map grammatical case to badge class.
@@ -961,6 +1062,38 @@
       if (modal) modal.style.display = "none";
     }
 
+    function renderVerbList() {
+      const list = document.getElementById("verbList");
+      if (!list) return;
+      list.innerHTML = "";
+      const items = [...data].sort((a, b) => {
+        const aKey = `${a.verb} ${a.correct}`.toLowerCase();
+        const bKey = `${b.verb} ${b.correct}`.toLowerCase();
+        return aKey.localeCompare(bKey, "de");
+      });
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        const translation = item.translations[currentLang] || "";
+        li.textContent = `${item.verb} ${item.correct} — ${translation}`;
+        list.appendChild(li);
+      });
+    }
+
+    function openVerbListModal() {
+      const modal = document.getElementById("verbListModal");
+      if (!modal) return;
+      renderVerbList();
+      modal.style.display = "flex";
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeVerbListModal() {
+      const modal = document.getElementById("verbListModal");
+      if (!modal) return;
+      modal.style.display = "none";
+      modal.setAttribute("aria-hidden", "true");
+    }
+
 
     // Refresh theme toggle icon.
     function updateThemeButton() {
@@ -1031,6 +1164,7 @@
     updateSpeechButton();
     updateLanguageButtons();
     updateShareLabels();
+    updateVerbListLabels();
     renderLevelFilters();
     if ('speechSynthesis' in window) {
       pickGermanVoice();
@@ -1039,6 +1173,13 @@
     document.getElementById("appVersion").textContent = `${APP_VERSION}`;
     document.getElementById("shareButton").onclick = openShareModal;
     document.getElementById("shareModal").onclick = closeShareModal;
+    document.getElementById("verbListButton").onclick = openVerbListModal;
+    document.getElementById("verbListClose").onclick = closeVerbListModal;
+    document.getElementById("verbListModal").onclick = closeVerbListModal;
+    const verbListContent = document.querySelector("#verbListModal .modal-list-content");
+    if (verbListContent) {
+      verbListContent.onclick = (event) => event.stopPropagation();
+    }
     newQuestion();
     updateProgress();
 
