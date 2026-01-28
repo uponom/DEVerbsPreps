@@ -754,6 +754,7 @@
       return ai - bi;
     });
     let activeLevels = new Set(availableLevels.length ? availableLevels : ["B1"]);
+    const SETTINGS_KEY = "deverbs.settings";
 
     // Runtime state for the current session.
     let currentLang = "en";
@@ -782,7 +783,7 @@
     // Current theme name.
     let currentTheme = "light";
     // App version label shown in UI.
-    const APP_VERSION = "v18";
+    const APP_VERSION = "v19";
     // Speech toggle icons.
     const speechToggleIcons = { on: "🔊", off: "🔇" };
     const shareButtonText = { ru: "Поделиться", en: "Share", ua: "Поділитися" };
@@ -822,6 +823,7 @@
       updateVerbListLabels();
       updateVerbCardLabels();
       updateThemeButton();
+      saveSettings();
       const listModal = document.getElementById("verbListModal");
       if (listModal && listModal.style.display === "flex") {
         renderVerbList();
@@ -881,6 +883,7 @@
     function toggleSpeech() {
       speechEnabled = !speechEnabled;
       updateSpeechButton();
+      saveSettings();
     }
 
     // Pick a German TTS voice if available.
@@ -1132,6 +1135,7 @@
           renderLevelFilters();
           newQuestion();
           updateProgress();
+          saveSettings();
         };
         container.appendChild(btn);
       });
@@ -1142,6 +1146,45 @@
       if (!origin || origin === "null") return window.location.href;
       const baseUrl = new URL(".", window.location.href).href;
       return baseUrl;
+    }
+
+    function loadSettings() {
+      try {
+        const raw = localStorage.getItem(SETTINGS_KEY);
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed.lang === "string") {
+          currentLang = parsed.lang;
+        }
+        if (parsed && typeof parsed.speechEnabled === "boolean") {
+          speechEnabled = parsed.speechEnabled;
+        }
+        if (parsed && Array.isArray(parsed.activeLevels)) {
+          const filtered = parsed.activeLevels.filter((level) => availableLevels.includes(level));
+          if (filtered.length) {
+            activeLevels = new Set(filtered);
+          }
+        }
+        if (parsed && (parsed.theme === "dark" || parsed.theme === "light")) {
+          localStorage.setItem("theme", parsed.theme);
+        }
+      } catch (error) {
+        console.warn("Failed to load settings:", error);
+      }
+    }
+
+    function saveSettings() {
+      try {
+        const payload = {
+          lang: currentLang,
+          speechEnabled,
+          activeLevels: Array.from(activeLevels),
+          theme: currentTheme
+        };
+        localStorage.setItem(SETTINGS_KEY, JSON.stringify(payload));
+      } catch (error) {
+        console.warn("Failed to save settings:", error);
+      }
     }
 
     function openShareModal() {
@@ -1290,6 +1333,7 @@
       document.body.classList.toggle("theme-dark", theme === "dark");
       localStorage.setItem("theme", theme);
       updateThemeButton();
+      saveSettings();
     }
 
     // Toggle between light and dark themes.
@@ -1341,6 +1385,7 @@
       });
     }
 
+    loadSettings();
     initTheme();
     updateSpeechButton();
     updateLanguageButtons();

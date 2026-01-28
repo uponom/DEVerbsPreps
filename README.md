@@ -11,6 +11,7 @@ Interactive trainer for German verbs with prepositions. The app shows a verb, of
 - PWA support with offline caching.
 - Verb list modal with translations for the current UI language.
 - Verb info card with multilingual translations and optional speech playback.
+- Persistent settings (language, theme, auto-speech, filters) via localStorage.
 
 ## Quick start
 This is a static app with no build step. Choose the simplest option that fits your use case.
