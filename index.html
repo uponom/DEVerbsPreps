@@ -326,6 +326,66 @@
       line-height: 1.45;
     }
 
+    .verb-list .sich-muted {
+      color: var(--muted-2);
+    }
+
+    .verb-list .prep-strong {
+      font-weight: bold;
+    }
+
+    .verb-card-content {
+      max-width: 520px;
+      width: 90%;
+      text-align: left;
+      background: var(--card-bg);
+      color: var(--text);
+    }
+
+    .verb-card-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 0 12px;
+    }
+
+    .verb-card-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 0 0 12px;
+    }
+
+    .verb-card-speak {
+      font-size: 18px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: 1px solid var(--button-border);
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .verb-card-translation {
+      font-size: 18px;
+      margin: 4px 0;
+      color: var(--text);
+    }
+
+    .verb-card-translation .label {
+      font-weight: 600;
+      margin-right: 6px;
+      color: var(--muted);
+    }
+
+    .verb-card-example {
+      margin-top: 14px;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--muted);
+    }
+
     .restart-button {
       margin-top: 20px;
       font-size: 20px;
@@ -494,6 +554,19 @@
         <button id="verbListClose" class="modal-close" type="button" aria-label="Close">✖</button>
       </div>
       <ul id="verbList" class="verb-list"></ul>
+    </div>
+  </div>
+
+  <div id="verbCardModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content verb-card-content" role="dialog" aria-modal="true" aria-labelledby="verbCardTitle">
+      <div class="modal-header">
+        <div class="verb-card-title-row">
+          <h2 id="verbCardTitle" class="verb-card-title"></h2>
+          <button id="verbCardSpeak" class="verb-card-speak" type="button" aria-label="Speak card">🔊</button>
+        </div>
+        <button id="verbCardClose" class="modal-close" type="button" aria-label="Close">✖</button>
+      </div>
+      <div id="verbCardBody"></div>
     </div>
   </div>
 
@@ -709,7 +782,7 @@
     // Current theme name.
     let currentTheme = "light";
     // App version label shown in UI.
-    const APP_VERSION = "v17";
+    const APP_VERSION = "v18";
     // Speech toggle icons.
     const speechToggleIcons = { on: "🔊", off: "🔇" };
     const shareButtonText = { ru: "Поделиться", en: "Share", ua: "Поділитися" };
@@ -729,6 +802,16 @@
       en: "Close list",
       ua: "Закрити список"
     };
+    const verbCardCloseLabel = {
+      ru: "Закрыть карточку",
+      en: "Close card",
+      ua: "Закрити картку"
+    };
+    const verbCardSpeakLabel = {
+      ru: "Озвучить карточку",
+      en: "Speak card",
+      ua: "Озвучити картку"
+    };
 
     // Switch UI language and refresh the question.
     function setLanguage(lang) {
@@ -737,6 +820,7 @@
       updateLanguageButtons();
       updateShareLabels();
       updateVerbListLabels();
+      updateVerbCardLabels();
       updateThemeButton();
       const listModal = document.getElementById("verbListModal");
       if (listModal && listModal.style.display === "flex") {
@@ -770,6 +854,13 @@
       if (button) button.setAttribute("aria-label", verbListButtonLabel[currentLang] || verbListButtonLabel.en);
       if (title) title.textContent = verbListTitleText[currentLang] || verbListTitleText.en;
       if (closeButton) closeButton.setAttribute("aria-label", verbListCloseLabel[currentLang] || verbListCloseLabel.en);
+    }
+
+    function updateVerbCardLabels() {
+      const closeButton = document.getElementById("verbCardClose");
+      const speakButton = document.getElementById("verbCardSpeak");
+      if (closeButton) closeButton.setAttribute("aria-label", verbCardCloseLabel[currentLang] || verbCardCloseLabel.en);
+      if (speakButton) speakButton.setAttribute("aria-label", verbCardSpeakLabel[currentLang] || verbCardSpeakLabel.en);
     }
 
     // Map grammatical case to badge class.
@@ -829,6 +920,30 @@
       } catch (error) {
         console.warn("Speech synthesis unavailable:", error);
       }
+    }
+
+    function pickVoiceForLang(langCode) {
+      if (!('speechSynthesis' in window)) return null;
+      const voices = window.speechSynthesis.getVoices();
+      const code = (langCode || "").toLowerCase();
+      return voices.find((v) => (v.lang || "").toLowerCase().startsWith(code)) || null;
+    }
+
+    function speakSequence(segments) {
+      if (!('speechSynthesis' in window)) return;
+      const queue = (segments || []).filter((seg) => seg && seg.text);
+      if (!queue.length) return;
+      window.speechSynthesis.cancel();
+      const speakNext = (index) => {
+        if (index >= queue.length) return;
+        const seg = queue[index];
+        const utterance = new SpeechSynthesisUtterance(seg.text);
+        if (seg.voice) utterance.voice = seg.voice;
+        if (seg.lang) utterance.lang = seg.lang;
+        utterance.onend = () => speakNext(index + 1);
+        window.speechSynthesis.speak(utterance);
+      };
+      speakNext(0);
     }
 
     // Format reflexive verbs for display.
@@ -1066,15 +1181,33 @@
       const list = document.getElementById("verbList");
       if (!list) return;
       list.innerHTML = "";
+      const formatVerbForList = (verb) => {
+        if (verb.startsWith("sich ")) {
+          const rest = verb.slice(5);
+          return `<span class="sich-muted">sich</span> ${rest}`;
+        }
+        return verb;
+      };
+      const formatVerbForCard = (verb) => {
+        if (verb.startsWith("sich ")) {
+          const rest = verb.slice(5);
+          return `<span class="sich-muted">sich</span> ${rest}`;
+        }
+        return verb;
+      };
       const items = [...data].sort((a, b) => {
-        const aKey = `${a.verb} ${a.correct}`.toLowerCase();
-        const bKey = `${b.verb} ${b.correct}`.toLowerCase();
-        return aKey.localeCompare(bKey, "de");
+        const normalizeVerb = (verb) => verb.trim().replace(/^sich\s+/i, "");
+        const aVerb = normalizeVerb(a.verb);
+        const bVerb = normalizeVerb(b.verb);
+        const verbCompare = aVerb.localeCompare(bVerb, "de", { sensitivity: "base" });
+        if (verbCompare !== 0) return verbCompare;
+        return a.correct.localeCompare(b.correct, "de", { sensitivity: "base" });
       });
       items.forEach((item) => {
         const li = document.createElement("li");
         const translation = item.translations[currentLang] || "";
-        li.textContent = `${item.verb} ${item.correct} — ${translation}`;
+        li.innerHTML = `${formatVerbForList(item.verb)} <span class="prep-strong">${item.correct}</span> — ${translation}`;
+        li.onclick = () => openVerbCardModal(item, formatVerbForCard);
         list.appendChild(li);
       });
     }
@@ -1089,6 +1222,54 @@
 
     function closeVerbListModal() {
       const modal = document.getElementById("verbListModal");
+      if (!modal) return;
+      modal.style.display = "none";
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    function speakVerbCard(item) {
+      const translation = item.translations[currentLang] || "";
+      const example = item.example || "";
+      const verbText = `${item.verb} ${item.correct}`;
+      const langMap = { en: "en", ua: "uk", ru: "ru" };
+      const translationLang = langMap[currentLang] || "en";
+      if (!germanVoice) pickGermanVoice();
+      const translationVoice = pickVoiceForLang(translationLang);
+      const segments = [
+        { text: verbText, lang: germanVoice ? germanVoice.lang : "de-DE", voice: germanVoice },
+        { text: translation, lang: translationLang, voice: translationVoice },
+        { text: example, lang: germanVoice ? germanVoice.lang : "de-DE", voice: germanVoice }
+      ];
+      speakSequence(segments);
+    }
+
+    function openVerbCardModal(item, formatVerbForCard) {
+      const modal = document.getElementById("verbCardModal");
+      const title = document.getElementById("verbCardTitle");
+      const body = document.getElementById("verbCardBody");
+      const speakButton = document.getElementById("verbCardSpeak");
+      if (!modal || !title || !body) return;
+      title.innerHTML = `${formatVerbForCard(item.verb)} <span class="prep-strong">${item.correct}</span>`;
+      const en = item.translations.en || "";
+      const ua = item.translations.ua || "";
+      const ru = item.translations.ru || "";
+      const example = item.example || "";
+      body.innerHTML = `
+        <div class="verb-card-translation"><span class="label">EN:</span>${en}</div>
+        <div class="verb-card-translation"><span class="label">UA:</span>${ua}</div>
+        <div class="verb-card-translation"><span class="label">RU:</span>${ru}</div>
+        <div class="verb-card-example">${example}</div>
+      `;
+      modal.style.display = "flex";
+      modal.setAttribute("aria-hidden", "false");
+      if (speakButton) speakButton.onclick = () => speakVerbCard(item);
+      if (speechEnabled) {
+        speakVerbCard(item);
+      }
+    }
+
+    function closeVerbCardModal() {
+      const modal = document.getElementById("verbCardModal");
       if (!modal) return;
       modal.style.display = "none";
       modal.setAttribute("aria-hidden", "true");
@@ -1165,6 +1346,7 @@
     updateLanguageButtons();
     updateShareLabels();
     updateVerbListLabels();
+    updateVerbCardLabels();
     renderLevelFilters();
     if ('speechSynthesis' in window) {
       pickGermanVoice();
@@ -1179,6 +1361,12 @@
     const verbListContent = document.querySelector("#verbListModal .modal-list-content");
     if (verbListContent) {
       verbListContent.onclick = (event) => event.stopPropagation();
+    }
+    document.getElementById("verbCardClose").onclick = closeVerbCardModal;
+    document.getElementById("verbCardModal").onclick = closeVerbCardModal;
+    const verbCardContent = document.querySelector("#verbCardModal .verb-card-content");
+    if (verbCardContent) {
+      verbCardContent.onclick = (event) => event.stopPropagation();
     }
     newQuestion();
     updateProgress();
