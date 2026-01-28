@@ -246,7 +246,7 @@
     .example-text {
       font-style: italic;
       color: var(--muted);
-      font-size: 20px;
+      font-size: 24px;
       margin-bottom: 8px;
     }
 
@@ -255,6 +255,12 @@
       align-items: center;
       gap: 6px;
       flex-wrap: wrap;
+    }
+
+    .example-divider {
+      border: none;
+      border-top: 1px solid var(--button-border);
+      margin: 18px 0 10px;
     }
 
     .example-speak-button {
@@ -519,6 +525,7 @@
   <p id="result"></p>
   <button id="nextButton" onclick="newQuestion()">➡️</button>
 
+  <hr class="example-divider" />
   <div class="example-row">
     <div id="example" class="example-text"></div>
     <button id="exampleSpeakButton" class="example-speak-button is-hidden" type="button" aria-label="Speak example">🔊</button>
@@ -783,7 +790,7 @@
     // Current theme name.
     let currentTheme = "light";
     // App version label shown in UI.
-    const APP_VERSION = "v19";
+    const APP_VERSION = "v20";
     // Speech toggle icons.
     const speechToggleIcons = { on: "🔊", off: "🔇" };
     const shareButtonText = { ru: "Поделиться", en: "Share", ua: "Поділитися" };
@@ -958,6 +965,29 @@
       return verb;
     }
 
+    function replacePrepositionInExample(example, correct) {
+      if (!example || !correct) return example;
+      const contractions = {
+        an: ["am", "ans"],
+        in: ["im", "ins"],
+        zu: ["zum", "zur"],
+        bei: ["beim"],
+        von: ["vom"],
+        durch: ["durchs"],
+        "für": ["fürs"],
+        um: ["ums"],
+        auf: ["aufs"],
+        "über": ["überm", "übers"],
+        unter: ["unterm", "unters"],
+        vor: ["vorm", "vors"],
+        hinter: ["hinterm"]
+      };
+      const variants = [correct, ...(contractions[correct] || [])];
+      const escaped = variants.map((value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+      const pattern = `(^|\\s)(${escaped.join("|")})(?=\\b)`;
+      return example.replace(new RegExp(pattern, "giu"), "$1...");
+    }
+
     // Active dataset filtered by level.
     function getActiveData() {
       if (!activeLevels.size) return data;
@@ -1001,10 +1031,7 @@
 
       // Replace the current preposition with ellipses, including special chars (ä, ü, ö, ß).
       if (example && correct) {
-        // Escape special characters for regex.
-        const escaped = correct.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        // Ensure a preceding space before the preposition.
-        const replaced = example.replace(new RegExp(`\\s${escaped}`, "gu"), " ...");
+        const replaced = replacePrepositionInExample(example, correct);
         document.getElementById("example").textContent = replaced;
         document.getElementById("exampleSpeakButton").classList.add("is-hidden");
       } else {

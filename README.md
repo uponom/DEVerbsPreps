@@ -12,6 +12,7 @@ Interactive trainer for German verbs with prepositions. The app shows a verb, of
 - Verb list modal with translations for the current UI language.
 - Verb info card with multilingual translations and optional speech playback.
 - Persistent settings (language, theme, auto-speech, filters) via localStorage.
+- Example preposition replacement handles case-insensitive matches and common preposition-article contractions.
 
 ## Quick start
 This is a static app with no build step. Choose the simplest option that fits your use case.
