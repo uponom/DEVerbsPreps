@@ -5,7 +5,9 @@ Interactive trainer for German verbs with prepositions. The app shows a verb, of
 - Multiple interface languages: EN, UA, RU.
 - Akkusativ/Dativ case tags for each verb-preposition pair.
 - Weighted practice: incorrect answers appear more often.
-- Progress bar and penalty points to track mastery.
+- Tag-based filtering generated dynamically from the dataset.
+- Progress bar with filtered spaced-repetition segments.
+- Clickable progress bar that opens a training stats modal.
 - Example sentences with optional speech playback.
 - Light/dark theme toggle.
 - PWA support with offline caching.
@@ -52,6 +54,7 @@ The verb/preposition data and examples live in the `data` array inside `index.ht
 - `translations` for the supported languages.
 - `example` sentence.
 - `probability` used for weighted repetition.
+- `Tags`, an array of zero or more tag strings used for UI filters.
 
 ## How it works
 1. The app picks a verb/preposition pair using weighted random selection based on `probability`.
@@ -59,9 +62,11 @@ The verb/preposition data and examples live in the `data` array inside `index.ht
 3. When you answer:
    - Correct answers reduce the item’s `probability`, making it appear less often.
    - Wrong answers increase the `probability`, making it appear more often.
-4. The correct answer and an example sentence are displayed after each attempt; optional speech can play the answer and example.
-5. Progress is calculated as the percentage of items with `probability === 1`. Penalty points show per‑item and total repetition weight.
-6. When progress reaches 100%, a completion modal is shown and the test can be restarted.
+4. Level and tag filters narrow both the quiz pool and the verb list modal to the current subset.
+5. The correct answer and an example sentence are displayed after each attempt; optional speech can play the answer and example.
+6. Progress is calculated as the percentage of items with `probability === 1` in the currently filtered subset. The progress bar segments show the current spaced-repetition state for that same subset.
+7. Clicking the progress bar opens a stats modal with current penalty values, filter info, answer counters, accuracy, and filtered progress details.
+8. When progress reaches 100%, a completion modal is shown and the test can be restarted back to the dataset’s initial weights.
 
 ## License
 Not specified.
