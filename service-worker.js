@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v20';
+const CACHE_VERSION = 'v21';
 const CACHE_NAME = `DEVerbsPreps-cache-${CACHE_VERSION}`;
 const urlsToCache = [
   'index.html',
@@ -13,49 +13,59 @@ const urlsToCache = [
   'favicon.ico' // Favicon
 ];
 
-self.addEventListener('install', (event) => {
-  // Called when the Service Worker is installed
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache); // Add all required files to cache
-      })
-  );
-  self.skipWaiting();
-});
+if (typeof window !== 'undefined') {
+  window.DEVERBS_CACHE_VERSION = CACHE_VERSION;
+}
 
-self.addEventListener('fetch', (event) => {
-  // Called on every network request from the page
-  event.respondWith(
-    caches.match(event.request) // Try to find the requested resource in cache
-      .then((response) => {
-        if (response) {
-          return response; // If found, serve from cache
-        }
-        return fetch(event.request); // Otherwise do a normal network request
-      })
-  );
-});
+const isServiceWorkerContext =
+  typeof ServiceWorkerGlobalScope !== 'undefined' &&
+  self instanceof ServiceWorkerGlobalScope;
 
-self.addEventListener('activate', (event) => {
-  // Activate service worker and cleanup old caches
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
+if (isServiceWorkerContext) {
+  self.addEventListener('install', (event) => {
+    // Called when the Service Worker is installed
+    event.waitUntil(
+      caches.open(CACHE_NAME)
+        .then((cache) => {
+          console.log('Opened cache');
+          return cache.addAll(urlsToCache); // Add all required files to cache
         })
-      );
-    }).then(() => self.clients.claim())
-  );
-});
-
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
+    );
     self.skipWaiting();
-  }
-});
+  });
+
+  self.addEventListener('fetch', (event) => {
+    // Called on every network request from the page
+    event.respondWith(
+      caches.match(event.request) // Try to find the requested resource in cache
+        .then((response) => {
+          if (response) {
+            return response; // If found, serve from cache
+          }
+          return fetch(event.request); // Otherwise do a normal network request
+        })
+    );
+  });
+
+  self.addEventListener('activate', (event) => {
+    // Activate service worker and cleanup old caches
+    event.waitUntil(
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            if (cacheName !== CACHE_NAME) {
+              console.log('Deleting old cache:', cacheName);
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      }).then(() => self.clients.claim())
+    );
+  });
+
+  self.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+      self.skipWaiting();
+    }
+  });
+}

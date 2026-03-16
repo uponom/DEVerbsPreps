@@ -33,9 +33,8 @@ Then open `http://localhost:8000/DEVerbsPreps/`.
 
 ## PWA notes
 - The Service Worker caches key assets on install.
-- To publish a new version, bump both:
-  - `APP_VERSION` in `index.html`.
-  - `CACHE_VERSION` in `service-worker.js`.
+- To publish a new version, bump `CACHE_VERSION` in `service-worker.js`.
+- The footer version shown inside the app is read from that same `CACHE_VERSION`.
 - Speech synthesis works on secure contexts (HTTPS) or localhost.
 - QR code generation uses a local `qrcode.min.js` file (no network calls).
   - SHA-256: `c541ef06327885a8415bca8df6071e14189b4855336def4f36db54bde8484f36`
