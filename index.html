@@ -119,6 +119,12 @@
       white-space: nowrap;
     }
 
+    .tag-filters-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-right: 2px;
+    }
+
     .progress-container + .tag-filters {
       margin-left: 0;
       margin-top: 8px;
@@ -222,8 +228,17 @@
       margin-top: 10px;
     }
 
-    .progress-container {
+    .progress-header {
       margin-top: 30px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .progress-container {
+      margin-top: 0;
     }
 
     .progress-text {
@@ -481,20 +496,6 @@
       line-height: 1.45;
     }
 
-    .app-version {
-      font-size: 12px;
-      color: var(--muted);
-      text-align: right;
-    }
-
-    .app-version-row {
-      margin-top: 12px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 6px;
-    }
-
     .share-button {
       font-size: 12px;
       padding: 2px 6px;
@@ -608,8 +609,11 @@
     <button id="exampleSpeakButton" class="example-speak-button is-hidden" type="button" aria-label="Speak example">🔊</button>
   </div>
 
-  <div class="progress-container">
+  <div class="progress-header">
     <div class="progress-text" id="progressText"></div>
+    <button id="shareButton" class="share-button" type="button"></button>
+  </div>
+  <div class="progress-container">
     <button id="progressBarButton" class="progress-bar-button" type="button" aria-label="Open training statistics">
       <div class="progress-bar">
         <div class="progress-segment progress-fill-green" id="progressFillGreen"></div>
@@ -619,11 +623,6 @@
     </button>
   </div>
   <div id="tagFilters" class="tag-filters" aria-label="Tag filters"></div>
-
-  <div class="app-version-row">
-    <div id="appVersion" class="app-version"></div>
-    <button id="shareButton" class="share-button" type="button"></button>
-  </div>
 
   <div id="shareModal" class="modal-overlay" aria-hidden="true">
     <div class="modal-content">
@@ -674,7 +673,7 @@
   {verb:  "achten", correct:  "auf", case:  "Akkusativ", probability:  7, translations:  {ru:  "обращать внимание на", en:  "to pay attention", ua:  "звертати увагу на"}, example:  "Achte auf die rote Ampel!", Tags:  ["FB"], level:  "B1"},
   {verb:  "antworten", correct:  "auf", case:  "Akkusativ", probability:  7, translations:  {ru:  "отвечать на", en:  "to answer to", ua:  "відповідати на"}, example:  "Ich antworte auf deine Frage.", Tags:  ["FB"], level:  "B1"},
   {verb:  "sich ärgern", correct:  "über", case:  "Akkusativ", probability:  7, translations:  {ru:  "злиться на", en:  "to be annoyed about", ua:  "злитися на"}, example:  "Ich ärgere mich über das schlechte Wetter.", Tags:  ["FB"], level:  "B1"},
-  {verb:  "sich aufregen", correct:  "über", case:  "Akkusativ", probability:  7, translations:  {ru:  "волноваться из-за", en:  "to get upset about", ua:  "хвилюватися через"}, example:  "Sie regt sich immer über den Lärm auf.", Tags:  ["t1"], level:  "B1"},
+  {verb:  "sich aufregen", correct:  "über", case:  "Akkusativ", probability:  7, translations:  {ru:  "волноваться из-за", en:  "to get upset about", ua:  "хвилюватися через"}, example:  "Sie regt sich immer über den Lärm auf.", Tags:  [], level:  "B1"},
   {verb:  "sich bedanken", correct:  "für", case:  "Akkusativ", probability:  7, translations:  {ru:  "благодарить за", en:  "to thank for", ua:  "дякувати за"}, example:  "Paul bedankt sich bei Lisa für die Hilfe.", Tags:  [], level:  "B1"},
   {verb:  "beschränken", correct:  "auf", case:  "Akkusativ", probability:  7, translations:  {ru:  "ограничивать чем-то", en:  "to limit to", ua:  "обмежувати чимось"}, example:  "Wir beschränken uns auf das Wichtigste.", Tags:  [], level:  "B1"},
   {verb:  "sich beschweren", correct:  "über", case:  "Akkusativ", probability:  7, translations:  {ru:  "жаловаться на", en:  "to complain about", ua:  "скаржитися на"}, example:  "Der Vater beschwert sich über die Kinder.", Tags:  ["FB"], level:  "B1"},
@@ -690,7 +689,7 @@
   {verb:  "sich engagieren", correct:  "für", case:  "Akkusativ", probability:  7, translations:  {ru:  "активно участвовать в", en:  "to get involved in", ua:  "активно брати участь у"}, example:  "Er engagiert sich für soziale Projekte.", Tags:  ["FB"], level:  "B1"},
   {verb:  "sich entscheiden", correct:  "für", case:  "Akkusativ", probability:  7, translations:  {ru:  "решиться на", en:  "to decide on", ua:  "вирішити щодо"}, example:  "Ich entscheide mich für ein rotes Kleid.", Tags:  ["FB"], level:  "B1"},
   {verb:  "sich entschuldigen", correct:  "für", case:  "Akkusativ", probability:  7, translations:  {ru:  "извиняться за", en:  "to apologize for", ua:  "вибачатися за"}, example:  "Bernd entschuldigt sich für die Verspätung.", Tags:  ["FB"], level:  "B1"},
-  {verb:  "sich erinnern", correct:  "an", case:  "Akkusativ", probability:  7, translations:  {ru:  "вспоминать о", en:  "to remember", ua:  "пам’ятати про"}, example:  "Sie kann sich an nichts mehr erinnern.", Tags:  ["FB", "t1"], level:  "B1"},
+  {verb:  "sich erinnern", correct:  "an", case:  "Akkusativ", probability:  7, translations:  {ru:  "вспоминать о", en:  "to remember", ua:  "пам’ятати про"}, example:  "Sie kann sich an nichts mehr erinnern.", Tags:  ["FB"], level:  "B1"},
   {verb:  "sich freuen", correct:  "auf", case:  "Akkusativ", probability:  7, translations:  {ru:  "радоваться (предстоящему)", en:  "to look forward to", ua:  "радіти (майбутньому)"}, example:  "Wir freuen uns alle auf den Urlaub.", Tags:  [], level:  "B1"},
   {verb:  "halten", correct:  "für", case:  "Akkusativ", probability:  7, translations:  {ru:  "считать кого-то кем-то", en:  "to consider as", ua:  "вважати когось кимось"}, example:  "Ich halte dich für sehr intelligent.", Tags:  ["FB"], level:  "B1"},
   {verb:  "hinweisen", correct:  "auf", case:  "Akkusativ", probability:  7, translations:  {ru:  "указывать на", en:  "to point out", ua:  "вказувати на"}, example:  "Er möchte auf das Verbot hinweisen.", Tags:  ["FB"], level:  "B1"},
@@ -724,7 +723,7 @@
   {verb:  "bestehen", correct:  "aus", case:  "Dativ", probability:  7, translations:  {ru:  "состоять из", en:  "to consist of", ua:  "складатися з"}, example:  "Die Gruppe besteht aus vier Personen.", Tags:  ["FB"], level:  "B1"},
   {verb:  "chatten", correct:  "mit", case:  "Dativ", probability:  7, translations:  {ru:  "переписываться с", en:  "to chat with", ua:  "спілкуватися з"}, example:  "Ich chatte oft mit meinen Freunden.", Tags:  [], level:  "B1"},
   {verb:  "diskutieren", correct:  "mit", case:  "Dativ", probability:  7, translations:  {ru:  "дискутировать с", en:  "to discuss with", ua:  "дискутувати з"}, example:  "Ich diskutiere mit meinem Lehrer.", Tags:  ["FB"], level:  "B1"},
-  {verb:  "einladen", correct:  "zu", case:  "Dativ", probability:  7, translations:  {ru:  "приглашать на", en:  "to invite to", ua:  "запрошувати на"}, example:  "Tom hat mich gestern ins Kino eingeladen.", Tags:  ["FB"], level:  "B1"},
+  {verb:  "einladen", correct:  "zu", case:  "Dativ", probability:  7, translations:  {ru:  "приглашать на", en:  "to invite to", ua:  "запрошувати на"}, example:  "Tom hat mich gestern zu einem Kinobesuch eingeladen.", Tags:  ["FB"], level:  "B1"},
   {verb:  "erfahren", correct:  "von", case:  "Dativ", probability:  7, translations:  {ru:  "узнать о", en:  "to learn about", ua:  "дізнатися про"}, example:  "Ich habe von dem Unfall erfahren.", Tags:  [], level:  "B1"},
   {verb:  "sich erkundigen", correct:  "nach", case:  "Dativ", probability:  7, translations:  {ru:  "осведомляться о", en:  "to inquire about", ua:  "довідуватися про"}, example:  "Florian hat sich nach dir erkundigt.", Tags:  [], level:  "B1"},
   {verb:  "sich entschuldigen", correct:  "bei", case:  "Dativ", probability:  7, translations:  {ru:  "извиняться перед", en:  "to apologize to", ua:  "вибачатися перед"}, example:  "Ich entschuldige mich bei dir.", Tags:  [], level:  "B1"},
@@ -766,7 +765,7 @@
   {verb:  "bestehen", correct:  "auf", case:  "Dativ", probability:  7, translations:  {ru:  "настаивать на", en:  "to insist on", ua:  "наполягати на"}, example:  "Sie besteht auf ihr Recht.", Tags:  [], level:  "B2"},
   {verb:  "sich bewerben", correct:  "um", case:  "Akkusativ", probability:  7, translations:  {ru:  "подаваться на (работу и т. п.)", en:  "to apply for", ua:  "подаватися на"}, example:  "Tina kann sich um den Job bewerben.", Tags:  ["FB"], level:  "B2"},
   {verb:  "sich beziehen", correct:  "auf", case:  "Akkusativ", probability:  7, translations:  {ru:  "ссылаться на, относиться к", en:  "to refer to", ua:  "посилатися на"}, example:  "Dieser Satz bezieht sich auf die letzte Seite.", Tags:  ["FB"], level:  "B2"},
-  {verb:  "danken", correct:  "für", case:  "Akkusativ", probability:  7, translations:  {ru:  "благодарить за", en:  "to thank for", ua:  "дякувати за"}, example:  "Wir danken dafür, dass sie gekommen sind.", Tags:  [], level:  "B2"},
+  {verb:  "danken", correct:  "für", case:  "Akkusativ", probability:  7, translations:  {ru:  "благодарить за", en:  "to thank for", ua:  "дякувати за"}, example:  "Wir danken Ihnen für Ihre Hilfe.", Tags:  [], level:  "B2"},
   {verb:  "dienen", correct:  "zu", case:  "Dativ", probability:  7, translations:  {ru:  "служить для", en:  "to serve for", ua:  "слугувати для"}, example:  "Dieses Gerät dient zum Schneiden von Glas.", Tags:  [], level:  "B2"},
   {verb:  "diskutieren", correct:  "über", case:  "Akkusativ", probability:  7, translations:  {ru:  "обсуждать, дискутировать о", en:  "to discuss", ua:  "обговорювати"}, example:  "Sie diskutieren oft über die Politik.", Tags:  ["FB"], level:  "B2"},
   {verb:  "einverstanden sein", correct:  "mit", case:  "Dativ", probability:  7, translations:  {ru:  "быть согласным с", en:  "to agree with", ua:  "бути згодним з"}, example:  "Bist du mit der Entscheidung einverstanden?", Tags:  [], level:  "B2"},
@@ -823,7 +822,7 @@
   {verb:  "überreden", correct:  "zu", case:  "Dativ", probability:  7, translations:  {ru:  "уговаривать на", en:  "to persuade to", ua:  "вмовляти до"}, example:  "Kann ich dich zu einem Ausflug überreden?", Tags:  [], level:  "B2"},
   {verb:  "sich unterhalten", correct:  "über", case:  "Akkusativ", probability:  7, translations:  {ru:  "беседовать о", en:  "to chat about, to talk about", ua:  "спілкуватися про"}, example:  "Die Frauen unterhalten sich über Rezepte.", Tags:  [], level:  "B2"},
   {verb:  "vergleichen", correct:  "mit", case:  "Dativ", probability:  7, translations:  {ru:  "сравнивать с", en:  "to compare with", ua:  "порівнювати з"}, example:  "Das kann man vergleichen mit letztem Jahr.", Tags:  ["FB"], level:  "B2"},
-  {verb:  "sich verlieben", correct:  "in", case:  "Akkusativ", probability:  7, translations:  {ru:  "влюбиться в", en:  "to fall in love with", ua:  "закохатися в"}, example:  "Ich werde mich wieder verlieben.", Tags:  [], level:  "B2"},
+  {verb:  "sich verlieben", correct:  "in", case:  "Akkusativ", probability:  7, translations:  {ru:  "влюбиться в", en:  "to fall in love with", ua:  "закохатися в"}, example:  "Ich werde mich wieder in jemanden verlieben.", Tags:  [], level:  "B2"},
   {verb:  "verstoßen", correct:  "gegen", case:  "Akkusativ", probability:  7, translations:  {ru:  "нарушать (правила, закон)", en:  "to violate, to infringe", ua:  "порушувати"}, example:  "Die Spieler verstoßen gegen die Regeln.", Tags:  ["FB"], level:  "B2"},
   {verb:  "vertrauen", correct:  "auf", case:  "Akkusativ", probability:  7, translations:  {ru:  "полагаться на, доверять", en:  "to trust in, to rely on", ua:  "довіряти, покладатися на"}, example:  "Sie vertrauen auf ihr Glück.", Tags:  [], level:  "B2"},
   {verb:  "sich verwandeln", correct:  "in", case:  "Akkusativ", probability:  7, translations:  {ru:  "превращаться в", en:  "to transform into", ua:  "перетворюватися на"}, example:  "Der Frosch verwandelt sich in einen Prinzen.", Tags:  [], level:  "B2"},
@@ -899,11 +898,14 @@
     // Speech toggle icons.
     const speechToggleIcons = { on: "🔊", off: "🔇" };
     const shareButtonText = { ru: "Поделиться", en: "Share", ua: "Поділитися" };
+    const progressLabelText = { ru: "Прогресс", en: "Progress", ua: "Прогрес" };
+    const tagsLabelText = { ru: "Теги:", en: "Tags:", ua: "Теги:" };
+    const noTagFiltersText = { ru: "Без фильтра по тегам", en: "No tag filters", ua: "Без фільтра за тегами" };
     const shareTitleText = "Deutsche Verben mit Präposition";
     const verbListTitleText = {
-      ru: "Все глаголы с предлогами",
-      en: "All verb-preposition pairs",
-      ua: "Усі дієслова з прийменниками"
+      ru: "Пары глагол–предлог (с учётом активных фильтров и тегов)",
+      en: "Verb-Preposition Pairs (with applied filters and tags)",
+      ua: "Пари дієслово-прийменник (з урахуванням активних фільтрів і тегів)"
     };
     const verbListButtonLabel = {
       ru: "Список глаголов с предлогами",
@@ -934,11 +936,17 @@
       updateShareLabels();
       updateVerbListLabels();
       updateVerbCardLabels();
+      renderTagFilters();
+      updateProgress();
       updateThemeButton();
       saveSettings();
       const listModal = document.getElementById("verbListModal");
       if (listModal && listModal.style.display === "flex") {
         renderVerbList();
+      }
+      const statsModal = document.getElementById("statsModal");
+      if (statsModal && statsModal.style.display === "flex") {
+        renderStatsModal();
       }
     }
 
@@ -1283,7 +1291,8 @@
     function updateProgress() {
         const stats = getProgressStats();
         const { total, greenCount, yellowCount, orangeCount, percent } = stats;
-        document.getElementById("progressText").textContent = `📊 Progress: ${percent}%`;
+        const progressLabel = progressLabelText[currentLang] || progressLabelText.en;
+        document.getElementById("progressText").textContent = `${progressLabel}: ${percent}%`;
         const segmentTotal = total || 1;
         const greenRatio = greenCount / segmentTotal;
         const yellowRatio = yellowCount / segmentTotal;
@@ -1302,8 +1311,9 @@
       if (!body) return;
       const stats = getProgressStats();
       const levelsLabel = Array.from(activeLevels).join(", ") || "All";
-      const tagLabel = activeTag || "All";
+      const tagLabel = activeTag || (noTagFiltersText[currentLang] || noTagFiltersText.en);
       const cards = [
+        ["App version", window.DEVERBS_CACHE_VERSION || ""],
         ["Current word", stats.currentVerb],
         ["Current penalty", `${stats.currentPenalty}`],
         ["Total penalty", `${stats.totalPenalty}`],
@@ -1408,9 +1418,14 @@
       }
       container.style.display = "flex";
 
+      const label = document.createElement("span");
+      label.className = "tag-filters-label";
+      label.textContent = tagsLabelText[currentLang] || tagsLabelText.en;
+      container.appendChild(label);
+
       const allButton = document.createElement("button");
       allButton.type = "button";
-      allButton.textContent = "All";
+      allButton.textContent = noTagFiltersText[currentLang] || noTagFiltersText.en;
       allButton.classList.toggle("active", !activeTag);
       allButton.onclick = () => {
         activeTag = "";
@@ -1698,7 +1713,6 @@
       pickGermanVoice();
       window.speechSynthesis.addEventListener('voiceschanged', pickGermanVoice);
     }
-    document.getElementById("appVersion").textContent = `${window.DEVERBS_CACHE_VERSION || ""}`;
     document.getElementById("shareButton").onclick = openShareModal;
     document.getElementById("shareModal").onclick = closeShareModal;
     document.getElementById("progressBarButton").onclick = openStatsModal;
