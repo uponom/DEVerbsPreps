@@ -454,11 +454,31 @@
       text-align: left;
       background: var(--card-bg);
       color: var(--text);
+      max-height: min(85vh, 720px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
 
     .stats-title {
       margin: 0;
       font-size: 24px;
+    }
+
+    .stats-modal-content .modal-header {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--button-border);
+      flex-shrink: 0;
+    }
+
+    #statsModalBody {
+      overflow-y: auto;
+      padding-right: 4px;
     }
 
     .stats-grid {
@@ -563,6 +583,14 @@
         min-height: 28px;
         font-size: 12px;
       }
+      .stats-modal-content {
+        width: calc(100% - 20px);
+        max-height: calc(100vh - 20px);
+        padding: 16px;
+      }
+      .stats-title {
+        font-size: 20px;
+      }
       .verb-list-button {
         width: 34px;
         height: 28px;
@@ -658,7 +686,7 @@
   <div id="statsModal" class="modal-overlay" aria-hidden="true">
     <div class="modal-content stats-modal-content" role="dialog" aria-modal="true" aria-labelledby="statsModalTitle">
       <div class="modal-header">
-        <h2 id="statsModalTitle" class="stats-title">Training stats</h2>
+        <h2 id="statsModalTitle" class="stats-title">Information</h2>
         <button id="statsModalClose" class="modal-close" type="button" aria-label="Close">✖</button>
       </div>
       <div id="statsModalBody"></div>
